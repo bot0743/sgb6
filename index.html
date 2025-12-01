@@ -3,34 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Самарская городская больница №6 - Платные услуги</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Платные медицинские услуги | Клиника "Здоровье+"</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Платные медицинские услуги</h1>
-        
-        <div class="logo">
-            Государственное бюджетное учреждение здравоохранения Самарской области<br>
-            «Самарская городская больница № 6»
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>Здоровье+</span>
+                </a>
+                
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="active">Главная</a>
+                    <a href="pages/services.html">Услуги</a>
+                    <a href="pages/about.html">О клинике</a>
+                    <a href="pages/contacts.html">Контакты</a>
+                    <a href="tel:88463110939" class="phone-link">
+                        <i class="fas fa-phone"></i> 8 (846) 311-09-39
+                    </a>
+                </div>
+                
+                <div class="burger" id="burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
         </div>
-        
-        <div class="message">
-            Полноценный сайт находится в разработке
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Платные медицинские услуги</h1>
+                <p class="subtitle">Современная диагностика, лечение и профилактика<br>в комфортных условиях</p>
+                <a href="tel:88463110939" class="btn-primary">
+                    <i class="fas fa-phone-alt"></i> Записаться по телефону
+                </a>
+            </div>
         </div>
-        
-        <div class="phone">
-            <a href="tel:88463110939">8 (846) 311-09-39</a>
+    </section>
+
+    <!-- Services Preview -->
+    <section class="services-preview">
+        <div class="container">
+            <h2 class="section-title">Наши услуги</h2>
+            <p class="section-subtitle">Комплексный подход к вашему здоровью</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h3>Диагностика в один день</h3>
+                    <p>КТ, УЗИ, ЭКГ, ЭХОКГ, холтер на оборудовании экспертного класса</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Консультации специалистов</h3>
+                    <p>Прием узких специалистов в амбулаторно-поликлиническом отделении</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hospital-user"></i>
+                    </div>
+                    <h3>Комфортный стационар</h3>
+                    <p>Дневной и круглосуточный стационар по различным профилям</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <h3>Детское отделение</h3>
+                    <p>Педиатр, узкие специалисты и диагностика для детей</p>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="pages/services.html" class="btn-secondary">Все услуги</a>
+            </div>
         </div>
-        
-        <div class="message">
-            Запись на платные услуги осуществляется по телефону
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <i class="fas fa-clock"></i>
+                    <h3>Экономия времени</h3>
+                    <p>Диагностика и консультации в один день без очередей</p>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-award"></i>
+                    <h3>Экспертное оборудование</h3>
+                    <p>Современная техника для точной диагностики</p>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-users"></i>
+                    <h3>Команда специалистов</h3>
+                    <p>Опытные врачи различных специальностей</p>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Комфорт и безопасность</h3>
+                    <p>Уютные помещения и соблюдение всех стандартов</p>
+                </div>
+            </div>
         </div>
-        
-        <div class="note">
-            В настоящее время перечень услуг и целевые нозологии уточняются.<br>
-            Актуальная информация будет доступна на обновлённом сайте.
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Запись на платные услуги</h2>
+                <p>Для записи на консультацию, диагностику или лечение<br>позвоните по телефону:</p>
+                <a href="tel:88463110939" class="phone-large">8 (846) 311-09-39</a>
+                <p class="cta-note">Онлайн-запись временно недоступна. Приносим извинения за неудобства.</p>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Клиника "Здоровье+"</h3>
+                    <p>Платные медицинские услуги<br>Современная диагностика и лечение</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-phone"></i> 8 (846) 311-09-39</p>
+                    <p><i class="fas fa-clock"></i> Пн-Пт: 8:00-20:00</p>
+                    <p><i class="fas fa-clock"></i> Сб-Вс: 9:00-18:00</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Навигация</h3>
+                    <a href="index.html">Главная</a>
+                    <a href="pages/services.html">Услуги</a>
+                    <a href="pages/about.html">О клинике</a>
+                    <a href="pages/contacts.html">Контакты</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Клиника "Здоровье+". Платные медицинские услуги.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
