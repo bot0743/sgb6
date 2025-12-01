@@ -347,3 +347,120 @@ a {
     font-size: 0.9rem;
     opacity: 0.7;
 }
+/* Services Page Styles */
+.page-header {
+    background: linear-gradient(135deg, rgba(42, 157, 143, 0.1) 0%, rgba(233, 196, 106, 0.1) 100%);
+    padding: 140px 0 60px;
+    margin-top: 80px;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+}
+
+.services-list {
+    padding: 60px 0;
+}
+
+.service-category {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--primary-color);
+}
+
+.category-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(42, 157, 143, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.category-icon i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.service-category h2 {
+    color: var(--dark-color);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.service-category p {
+    margin-bottom: 15px;
+    color: var(--text-light);
+}
+
+.service-category ul {
+    list-style-position: inside;
+    margin: 15px 0;
+}
+
+.service-category li {
+    margin-bottom: 8px;
+    padding-left: 5px;
+}
+
+.specialists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.specialists-grid span {
+    background-color: rgba(42, 157, 143, 0.1);
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.cta-simple {
+    background-color: #f9f9f9;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.cta-simple h2 {
+    color: var(--dark-color);
+    margin-bottom: 15px;
+}
+
+.cta-simple p {
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        padding: 120px 0 40px;
+    }
+    
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .service-category {
+        padding: 25px;
+    }
+    
+    .specialists-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
