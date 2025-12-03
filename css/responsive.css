@@ -1,4 +1,4 @@
-/* Tablet Styles */
+/* Tablet Styles (992px and below) */
 @media (max-width: 992px) {
     .hero h1 {
         font-size: 2.5rem;
@@ -11,9 +11,23 @@
     .nav-links {
         gap: 20px;
     }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .phone-large {
+        font-size: 1.8rem;
+        padding: 14px 28px;
+    }
 }
 
-/* Mobile Styles */
+/* Mobile Styles (768px and below) */
 @media (max-width: 768px) {
     .burger {
         display: flex;
@@ -23,6 +37,7 @@
         position: fixed;
         top: 80px;
         left: 0;
+        right: 0;
         width: 100%;
         background-color: var(--white);
         flex-direction: column;
@@ -34,6 +49,9 @@
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
+        z-index: 999;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
     }
     
     .nav-links.active {
@@ -43,15 +61,19 @@
     }
     
     .nav-links a {
-        padding: 15px 0;
+        padding: 15px 20px;
         width: 100%;
         text-align: center;
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
     
+    .nav-links a.active::after {
+        display: none;
+    }
+    
     .phone-link {
         background: none;
-        padding: 15px 0;
+        padding: 15px 20px;
         color: var(--primary-color);
         font-weight: 700;
     }
@@ -68,11 +90,14 @@
         font-size: 1.1rem;
     }
     
-    .services-preview, .features, .cta {
+    .services-preview,
+    .features,
+    .cta {
         padding: 60px 0;
     }
     
-    .service-card, .feature {
+    .service-card,
+    .feature {
         padding: 20px;
     }
     
@@ -84,17 +109,47 @@
     .footer {
         padding: 40px 0 20px;
     }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .service-category {
+        padding: 25px;
+    }
+    
+    .specialists-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+    
+    .page-header h1 {
+        font-size: 2rem;
+    }
 }
 
-/* Small Mobile Styles */
+/* Small Mobile Styles (480px and below) */
 @media (max-width: 480px) {
     .hero h1 {
         font-size: 1.8rem;
     }
     
-    .btn-primary, .btn-secondary {
+    .btn-primary,
+    .btn-secondary {
         padding: 10px 20px;
         font-size: 0.9rem;
+        width: 100%;
+        max-width: 280px;
     }
     
     .container {
@@ -103,5 +158,36 @@
     
     .section-title {
         font-size: 1.6rem;
+    }
+    
+    .cta h2 {
+        font-size: 1.8rem;
+    }
+    
+    .phone-large {
+        font-size: 1.3rem;
+        padding: 10px 20px;
+    }
+    
+    .service-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .category-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .specialists-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .nav-links {
+        top: 70px;
+    }
+    
+    .navbar {
+        padding: 15px 0;
     }
 }
