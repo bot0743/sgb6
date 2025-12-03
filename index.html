@@ -4,10 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Платные медицинские услуги | Самарская городская больница № 6</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <meta name="description" content="Платные медицинские услуги в Самарской городской больнице №6. Современная диагностика, консультации специалистов, стационар, детское отделение.">
+    <meta name="keywords" content="медицинские услуги Самара, платная медицина, диагностика, консультация врача, стационар, детский врач">
+    
+    <!-- Предзагрузка шрифтов -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap">
+    
+    <!-- Фавиконки -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -15,39 +27,40 @@
     <!-- Header -->
     <header class="header">
         <div class="container">
-            <nav class="navbar">
+            <nav class="navbar" itemscope itemtype="https://schema.org/MedicalOrganization">
                 <a href="index.html" class="logo">
-                    <i class="fas fa-heartbeat"></i>
+                    <i class="fas fa-heartbeat" aria-hidden="true"></i>
                     <span>СГБ 6</span>
+                    <span class="sr-only">Самарская городская больница № 6</span>
                 </a>
                 
-                <div class="nav-links" id="navLinks">
+                <div class="nav-links" id="navLinks" aria-label="Основная навигация">
                     <a href="index.html" class="active">Главная</a>
                     <a href="pages/services.html">Услуги</a>
                     <a href="pages/about.html">О нас</a>
                     <a href="pages/contacts.html">Контакты</a>
                     <a href="tel:88463110939" class="phone-link">
-                        <i class="fas fa-phone"></i> 8 (846) 311-09-39
+                        <i class="fas fa-phone" aria-hidden="true"></i> 8 (846) 311-09-39
                     </a>
                 </div>
                 
-                <div class="burger" id="burger">
+                <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </button>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" itemscope itemtype="https://schema.org/MedicalClinic">
         <div class="container">
             <div class="hero-content">
-                <h1>Платные медицинские услуги</h1>
+                <h1 itemprop="name">Платные медицинские услуги</h1>
                 <p class="subtitle">Современная диагностика, лечение и профилактика<br>в комфортных условиях</p>
-                <a href="tel:88463110939" class="btn-primary">
-                    <i class="fas fa-phone-alt"></i> Записаться по телефону
+                <a href="tel:88463110939" class="btn-primary" aria-label="Записаться по телефону 8 (846) 311-09-39">
+                    <i class="fas fa-phone-alt" aria-hidden="true"></i> Записаться по телефону
                 </a>
             </div>
         </div>
@@ -60,37 +73,37 @@
             <p class="section-subtitle">Комплексный подход к вашему здоровью</p>
             
             <div class="services-grid">
-                <div class="service-card">
+                <article class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-stethoscope"></i>
+                        <i class="fas fa-stethoscope" aria-hidden="true"></i>
                     </div>
                     <h3>Диагностика в один день</h3>
                     <p>КТ, УЗИ, ЭКГ, ЭХОКГ, холтер на оборудовании экспертного класса</p>
-                </div>
+                </article>
                 
-                <div class="service-card">
+                <article class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-user-md"></i>
+                        <i class="fas fa-user-md" aria-hidden="true"></i>
                     </div>
                     <h3>Консультации специалистов</h3>
                     <p>Прием узких специалистов в амбулаторно-поликлиническом отделении</p>
-                </div>
+                </article>
                 
-                <div class="service-card">
+                <article class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-hospital-user"></i>
+                        <i class="fas fa-hospital-user" aria-hidden="true"></i>
                     </div>
                     <h3>Комфортный стационар</h3>
                     <p>Дневной и круглосуточный стационар по различным профилям</p>
-                </div>
+                </article>
                 
-                <div class="service-card">
+                <article class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-baby"></i>
+                        <i class="fas fa-baby" aria-hidden="true"></i>
                     </div>
                     <h3>Детское отделение</h3>
                     <p>Педиатр, узкие специалисты и диагностика для детей</p>
-                </div>
+                </article>
             </div>
             
             <div class="text-center">
@@ -106,25 +119,25 @@
             
             <div class="features-grid">
                 <div class="feature">
-                    <i class="fas fa-clock"></i>
+                    <i class="fas fa-clock" aria-hidden="true"></i>
                     <h3>Экономия времени</h3>
                     <p>Диагностика и консультации в один день без очередей</p>
                 </div>
                 
                 <div class="feature">
-                    <i class="fas fa-award"></i>
+                    <i class="fas fa-award" aria-hidden="true"></i>
                     <h3>Экспертное оборудование</h3>
                     <p>Современная техника для точной диагностики</p>
                 </div>
                 
                 <div class="feature">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-users" aria-hidden="true"></i>
                     <h3>Команда специалистов</h3>
                     <p>Опытные врачи различных специальностей</p>
                 </div>
                 
                 <div class="feature">
-                    <i class="fas fa-shield-alt"></i>
+                    <i class="fas fa-shield-alt" aria-hidden="true"></i>
                     <h3>Комфорт и безопасность</h3>
                     <p>Уютные помещения и соблюдение всех стандартов</p>
                 </div>
@@ -145,18 +158,18 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" itemscope itemtype="https://schema.org/MedicalOrganization">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <h3>Государственное бюджетное учреждение здравоохранения Самарской области «Самарская городская больница № 6»</h3>
-                    <p>Платные медицинские услуги<br>Современная диагностика и лечение</p>
+                    <p itemprop="description">Платные медицинские услуги<br>Современная диагностика и лечение</p>
                 </div>
                 
                 <div class="footer-col">
                     <h3>Контакты</h3>
-                    <p><i class="fas fa-phone"></i> 8 (846) 311-09-39</p>
-                    <p><i class="fas fa-clock"></i> Пн-Пт: 8:00-16:30</p>
+                    <p><i class="fas fa-phone" aria-hidden="true"></i> <span itemprop="telephone">8 (846) 311-09-39</span></p>
+                    <p><i class="fas fa-clock" aria-hidden="true"></i> Пн-Пт: 8:00-16:30</p>
                 </div>
                 
                 <div class="footer-col">
