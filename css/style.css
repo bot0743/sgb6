@@ -1,5 +1,7 @@
 /* Reset and Base Styles */
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -16,7 +18,19 @@
     --text-light: #666;
     --white: #ffffff;
     --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
+    --border-radius: 15px;
+    --border-radius-sm: 10px;
+}
+
+/* Медиа-запросы для удобства */
+@custom-media --tablet (max-width: 992px);
+@custom-media --mobile (max-width: 768px);
+@custom-media --mobile-sm (max-width: 480px);
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -24,6 +38,8 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -98,6 +114,29 @@ a {
     margin-bottom: 50px;
 }
 
+/* Accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus styles for accessibility */
+:focus {
+    outline: 3px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
 /* Header Styles */
 .header {
     background-color: var(--white);
@@ -137,10 +176,22 @@ a {
 .nav-links a {
     font-weight: 500;
     color: var(--dark-color);
+    position: relative;
 }
 
-.nav-links a:hover, .nav-links a.active {
+.nav-links a:hover,
+.nav-links a.active {
     color: var(--primary-color);
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
 }
 
 .phone-link {
@@ -159,6 +210,9 @@ a {
     flex-direction: column;
     cursor: pointer;
     gap: 4px;
+    background: none;
+    border: none;
+    padding: 5px;
 }
 
 .burger span {
@@ -203,16 +257,20 @@ a {
 
 .service-card {
     background: var(--white);
-    border-radius: 15px;
+    border-radius: var(--border-radius);
     padding: 30px;
     text-align: center;
     box-shadow: var(--shadow);
     transition: var(--transition);
+    will-change: transform;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-hover);
 }
 
 .service-icon {
@@ -224,6 +282,11 @@ a {
     align-items: center;
     justify-content: center;
     margin: 0 auto 20px;
+    transition: var(--transition);
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.1);
 }
 
 .service-icon i {
@@ -252,12 +315,22 @@ a {
 .feature {
     text-align: center;
     padding: 30px 20px;
+    transition: var(--transition);
+}
+
+.feature:hover {
+    transform: translateY(-5px);
 }
 
 .feature i {
     font-size: 2.5rem;
     color: var(--primary-color);
     margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.feature:hover i {
+    transform: scale(1.1);
 }
 
 .feature h3 {
@@ -293,10 +366,12 @@ a {
     padding: 15px 30px;
     border-radius: 50px;
     margin-bottom: 20px;
+    transition: var(--transition);
 }
 
 .phone-large:hover {
     transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .cta-note {
@@ -324,7 +399,8 @@ a {
     font-size: 1.3rem;
 }
 
-.footer-col p, .footer-col a {
+.footer-col p,
+.footer-col a {
     margin-bottom: 10px;
     display: block;
     opacity: 0.8;
@@ -347,6 +423,7 @@ a {
     font-size: 0.9rem;
     opacity: 0.7;
 }
+
 /* Services Page Styles */
 .page-header {
     background: linear-gradient(135deg, rgba(42, 157, 143, 0.1) 0%, rgba(233, 196, 106, 0.1) 100%);
@@ -372,11 +449,17 @@ a {
 
 .service-category {
     background: var(--white);
-    border-radius: 15px;
+    border-radius: var(--border-radius);
     padding: 40px;
     margin-bottom: 30px;
     box-shadow: var(--shadow);
     border-left: 5px solid var(--primary-color);
+    transition: var(--transition);
+}
+
+.service-category:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
 }
 
 .category-icon {
@@ -388,6 +471,11 @@ a {
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.service-category:hover .category-icon {
+    transform: scale(1.1);
 }
 
 .category-icon i {
@@ -429,6 +517,13 @@ a {
     border-radius: 20px;
     text-align: center;
     font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.specialists-grid span:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
 }
 
 .cta-simple {
@@ -447,20 +542,57 @@ a {
     color: var(--text-light);
 }
 
-@media (max-width: 768px) {
-    .page-header {
-        padding: 120px 0 40px;
+/* Schema.org Microdata */
+[itemscope] {
+    display: block;
+}
+
+/* Loading animation for cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-    
-    .page-header h1 {
-        font-size: 2rem;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
-    
-    .service-category {
-        padding: 25px;
-    }
-    
-    .specialists-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    }
+}
+
+.service-card,
+.feature,
+.service-category {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Form styles for future use */
+.callback-form {
+    max-width: 400px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.callback-form input,
+.callback-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius-sm);
+    font-family: 'Open Sans', sans-serif;
+    transition: var(--transition);
+}
+
+.callback-form input:focus,
+.callback-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.1);
+}
+
+.callback-form button {
+    width: 100%;
 }
