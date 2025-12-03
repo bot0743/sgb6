@@ -4,37 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Услуги | Платные медицинские услуги</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/responsive.css">
+    <meta name="description" content="Полный спектр платных медицинских услуг в Самарской городской больнице №6: диагностика, консультации специалистов, стационар, детское отделение.">
+    <meta name="keywords" content="медицинские услуги, диагностика КТ УЗИ, консультация врача, стационар, детский врач, эндокринология, женская консультация">
+    
+    <!-- Предзагрузка шрифтов -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap">
+    
+    <!-- Фавиконки -->
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <nav class="navbar">
+            <nav class="navbar" itemscope itemtype="https://schema.org/MedicalOrganization">
                 <a href="../index.html" class="logo">
-                    <i class="fas fa-heartbeat"></i>
+                    <i class="fas fa-heartbeat" aria-hidden="true"></i>
                     <span>СГБ 6</span>
+                    <span class="sr-only">Самарская городская больница № 6</span>
                 </a>
                 
-                <div class="nav-links" id="navLinks">
+                <div class="nav-links" id="navLinks" aria-label="Основная навигация">
                     <a href="../index.html">Главная</a>
                     <a href="services.html" class="active">Услуги</a>
                     <a href="about.html">О нас</a>
                     <a href="contacts.html">Контакты</a>
                     <a href="tel:88463110939" class="phone-link">
-                        <i class="fas fa-phone"></i> 8 (846) 311-09-39
+                        <i class="fas fa-phone" aria-hidden="true"></i> 8 (846) 311-09-39
                     </a>
                 </div>
                 
-                <div class="burger" id="burger">
+                <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </button>
             </nav>
         </div>
     </header>
@@ -47,11 +60,11 @@
             </div>
         </section>
 
-        <section class="services-list">
+        <section class="services-list" itemscope itemtype="https://schema.org/MedicalProcedure">
             <div class="container">
-                <div class="service-category">
+                <article class="service-category">
                     <div class="category-icon">
-                        <i class="fas fa-diagnoses"></i>
+                        <i class="fas fa-diagnoses" aria-hidden="true"></i>
                     </div>
                     <h2>Точная диагностика в один день</h2>
                     <p>Комплексное обследование на оборудовании экспертного класса:</p>
@@ -63,11 +76,11 @@
                         <li>Холтеровское мониторирование</li>
                         <li>Другая функциональная диагностика</li>
                     </ul>
-                </div>
+                </article>
 
-                <div class="service-category">
+                <article class="service-category">
                     <div class="category-icon">
-                        <i class="fas fa-user-md"></i>
+                        <i class="fas fa-user-md" aria-hidden="true"></i>
                     </div>
                     <h2>Консультации и лечение у специалистов</h2>
                     <p>Прием врачей амбулаторно-поликлинического отделения:</p>
@@ -85,11 +98,11 @@
                         <span>Кистевой хирург</span>
                         <span>Инфекционист</span>
                     </div>
-                </div>
+                </article>
 
-                <div class="service-category">
+                <article class="service-category">
                     <div class="category-icon">
-                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-heart" aria-hidden="true"></i>
                     </div>
                     <h2>Эндокринология</h2>
                     <ul>
@@ -99,11 +112,11 @@
                         <li>Программа "Диабет-стопа" для эффективного контроля и профилактики</li>
                         <li>Школа диабета</li>
                     </ul>
-                </div>
+                </article>
 
-                <div class="service-category">
+                <article class="service-category">
                     <div class="category-icon">
-                        <i class="fas fa-female"></i>
+                        <i class="fas fa-female" aria-hidden="true"></i>
                     </div>
                     <h2>Женская консультация</h2>
                     <ul>
@@ -111,11 +124,11 @@
                         <li>Комплексное решение женских вопросов</li>
                         <li>Диагностика, лечение и профилактика в одном месте</li>
                     </ul>
-                </div>
+                </article>
 
-                <div class="service-category">
+                <article class="service-category">
                     <div class="category-icon">
-                        <i class="fas fa-briefcase-medical"></i>
+                        <i class="fas fa-briefcase-medical" aria-hidden="true"></i>
                     </div>
                     <h2>Забота о здоровье сотрудников</h2>
                     <p>Для предприятий и организаций:</p>
@@ -124,11 +137,11 @@
                         <li>Профессиональные осмотры</li>
                         <li>Корпоративные программы здоровья</li>
                     </ul>
-                </div>
+                </article>
 
-                <div class="service-category">
+                <article class="service-category">
                     <div class="category-icon">
-                        <i class="fas fa-procedures"></i>
+                        <i class="fas fa-procedures" aria-hidden="true"></i>
                     </div>
                     <h2>Комфортный стационар</h2>
                     <ul>
@@ -136,11 +149,11 @@
                         <li>Круглосуточный стационар</li>
                         <li>Профили: терапия, эндокринология, инфекционные заболевания</li>
                     </ul>
-                </div>
+                </article>
 
-                <div class="service-category">
+                <article class="service-category">
                     <div class="category-icon">
-                        <i class="fas fa-clinic-medical"></i>
+                        <i class="fas fa-clinic-medical" aria-hidden="true"></i>
                     </div>
                     <h2>Полный цикл медицинской помощи</h2>
                     <ul>
@@ -148,11 +161,11 @@
                         <li>От первичной консультации до лечения - в стенах одной клиники</li>
                         <li>Комплексные программы Check-up</li>
                     </ul>
-                </div>
+                </article>
 
-                <div class="service-category">
+                <article class="service-category">
                     <div class="category-icon">
-                        <i class="fas fa-child"></i>
+                        <i class="fas fa-child" aria-hidden="true"></i>
                     </div>
                     <h2>Детское отделение</h2>
                     <p>Педиатр и узкие специалисты:</p>
@@ -168,7 +181,7 @@
                         <span>Ортопед</span>
                     </div>
                     <p>Детская диагностика: ЭКГ, УЗИ, ЭХОКГ</p>
-                </div>
+                </article>
             </div>
         </section>
 
@@ -181,18 +194,18 @@
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" itemscope itemtype="https://schema.org/MedicalOrganization">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <h3>Государственное бюджетное учреждение здравоохранения Самарской области «Самарская городская больница № 6»</h3>
-                    <p>Платные медицинские услуги<br>Современная диагностика и лечение</p>
+                    <p itemprop="description">Платные медицинские услуги<br>Современная диагностика и лечение</p>
                 </div>
                 
                 <div class="footer-col">
                     <h3>Контакты</h3>
-                    <p><i class="fas fa-phone"></i> 8 (846) 311-09-39</p>
-                    <p><i class="fas fa-clock"></i> Пн-Пт: 8:00-16:30</p>
+                    <p><i class="fas fa-phone" aria-hidden="true"></i> <span itemprop="telephone">8 (846) 311-09-39</span></p>
+                    <p><i class="fas fa-clock" aria-hidden="true"></i> Пн-Пт: 8:00-16:30</p>
                 </div>
                 
                 <div class="footer-col">
