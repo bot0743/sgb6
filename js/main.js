@@ -296,28 +296,189 @@ function handlePWAInstall() {
     }
 }
 
+// ============================================
+// Улучшенный мониторинг онлайн/офлайн статуса
+// ============================================
+
+// Детектор мобильных устройств
+function isMobileDevice() {
+    // Проверка по User Agent
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    
+    // Проверка по ширине экрана
+    const isSmallScreen = window.innerWidth <= 768;
+    
+    // Проверка по тач-событиям
+    const hasTouch = 'ontouchstart' in window || 
+                     navigator.maxTouchPoints > 0 || 
+                     navigator.msMaxTouchPoints > 0;
+    
+    return mobileRegex.test(userAgent) || (hasTouch && isSmallScreen);
+}
+
 // Мониторинг онлайн/офлайн статуса
 function monitorConnectionStatus() {
-    // Функция обновления статуса
-    function updateOnlineStatus() {
-        const status = navigator.onLine ? 'online' : 'offline';
-        log(`Статус соединения: ${status}`);
+    let wasOffline = false;
+    let firstLoad = true;
+    let offlineNotification = null;
+    let onlineNotification = null;
+    let statusCheckInterval = null;
+    
+    // Очистка старых уведомлений о сети
+    function clearNetworkNotifications() {
+        if (offlineNotification && offlineNotification.parentNode) {
+            offlineNotification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => {
+                if (offlineNotification.parentNode) {
+                    offlineNotification.remove();
+                }
+            }, 300);
+            offlineNotification = null;
+        }
         
-        if (navigator.onLine) {
-            showNotification(CONFIG.ONLINE_MESSAGE, 'success', 3000);
-            document.body.classList.remove('offline');
-        } else {
-            showNotification(CONFIG.OFFLINE_MESSAGE, 'warning', 5000);
-            document.body.classList.add('offline');
+        if (onlineNotification && onlineNotification.parentNode) {
+            onlineNotification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => {
+                if (onlineNotification.parentNode) {
+                    onlineNotification.remove();
+                }
+            }, 300);
+            onlineNotification = null;
         }
     }
     
-    // Обработчики событий
-    window.addEventListener('online', updateOnlineStatus);
-    window.addEventListener('offline', updateOnlineStatus);
+    // Показать уведомление о сети (с умной логикой)
+    function showNetworkNotification(message, type = 'info', duration = 5000) {
+        const isMobile = isMobileDevice();
+        
+        // На десктопах показываем только warning уведомления (потеря связи)
+        if (!isMobile && type === 'success') {
+            return null;
+        }
+        
+        // Очищаем предыдущие уведомления того же типа
+        if (type === 'warning') {
+            clearNetworkNotifications();
+        } else if (type === 'success' && offlineNotification) {
+            // При восстановлении связи убираем offline уведомление
+            if (offlineNotification.parentNode) {
+                offlineNotification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    if (offlineNotification.parentNode) {
+                        offlineNotification.remove();
+                    }
+                }, 300);
+            }
+        }
+        
+        const notification = showNotification(message, type, duration);
+        
+        // Сохраняем ссылки на уведомления
+        if (type === 'warning') {
+            offlineNotification = notification;
+        } else if (type === 'success') {
+            onlineNotification = notification;
+        }
+        
+        return notification;
+    }
+    
+    // Функция обновления статуса
+    function updateOnlineStatus(event = null) {
+        const isOnline = navigator.onLine;
+        const isMobile = isMobileDevice();
+        
+        log(`Статус соединения: ${isOnline ? 'online' : 'offline'}, Устройство: ${isMobile ? 'mobile' : 'desktop'}, Событие: ${event ? event.type : 'initial'}`);
+        
+        // Обновляем классы body
+        document.body.classList.toggle('online', isOnline);
+        document.body.classList.toggle('offline', !isOnline);
+        
+        // Обработка первого захода на сайт
+        if (firstLoad) {
+            firstLoad = false;
+            
+            if (!isOnline) {
+                // Первый заход без интернета
+                setTimeout(() => {
+                    showNetworkNotification(
+                        'Используется кешированная версия сайта. Некоторые функции ограничены.',
+                        'warning',
+                        7000
+                    );
+                }, 1500);
+                wasOffline = true;
+            }
+            return;
+        }
+        
+        // Обработка изменения статуса (не первая загрузка)
+        if (!isOnline) {
+            // Потеряли соединение
+            if (!wasOffline) { // Только если до этого были онлайн
+                wasOffline = true;
+                
+                if (isMobile) {
+                    showNetworkNotification(
+                        'Нет подключения к интернету',
+                        'warning',
+                        5000
+                    );
+                } else {
+                    // На десктопе показываем уведомление только после 3 секунд без сети
+                    clearTimeout(statusCheckInterval);
+                    statusCheckInterval = setTimeout(() => {
+                        if (!navigator.onLine) {
+                            showNetworkNotification(
+                                'Потеряно соединение с интернетом',
+                                'warning',
+                                4000
+                            );
+                        }
+                    }, 3000);
+                }
+            }
+        } else if (wasOffline) {
+            // Восстановили соединение
+            wasOffline = false;
+            clearTimeout(statusCheckInterval);
+            
+            // Показываем уведомление только на мобильных
+            if (isMobile) {
+                setTimeout(() => {
+                    showNetworkNotification('Соединение восстановлено', 'success', 3000);
+                }, 500);
+            }
+        }
+    }
+    
+    // Функция для троттлинга событий
+    function throttle(callback, delay) {
+        let lastCall = 0;
+        return function(...args) {
+            const now = Date.now();
+            if (now - lastCall >= delay) {
+                lastCall = now;
+                callback.apply(this, args);
+            }
+        };
+    }
+    
+    // Обработчики событий с троттлингом
+    const throttledUpdate = throttle(updateOnlineStatus, 1000);
+    
+    window.addEventListener('online', (e) => throttledUpdate(e));
+    window.addEventListener('offline', (e) => throttledUpdate(e));
     
     // Инициализация при загрузке
-    updateOnlineStatus();
+    setTimeout(() => updateOnlineStatus(), 1000);
+    
+    // Также мониторим изменения размера окна (мобильный/десктоп может измениться при повороте)
+    window.addEventListener('resize', throttle(() => {
+        // При изменении размера окна перепроверяем статус для правильного отображения
+        updateOnlineStatus();
+    }, 500));
 }
 
 // ============================================
@@ -326,6 +487,13 @@ function monitorConnectionStatus() {
 
 document.addEventListener('DOMContentLoaded', function() {
     log('DOM загружен');
+    
+    // Добавляем класс устройства к body
+    if (isMobileDevice()) {
+        document.body.classList.add('mobile-device');
+    } else {
+        document.body.classList.add('desktop-device');
+    }
     
     // Инициализация бургер-меню
     const burger = document.getElementById('burger');
@@ -501,7 +669,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Обработка ошибок загрузки ресурсов
 window.addEventListener('error', function(e) {
     if (e.target.tagName === 'IMG') {
-        e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI4MCIgZmlsbD0iI2YwZjBmMCIvPjxwYXRoIGQ9Ik0xMDAgMTIwQzExMC40ODUgMTIwIDExOSAxMTEuNDg1IDExOSAxMDFDMTE5IDkwLjUxNDYgMTEwLjQ4NSA4MiAxMDAgODJDODkuNTE0NiA4MiA4MSA5MC41MTQ2IDgxIDEwMUM4MSAxMTEuNDg1IDg5LjUxNDYgMTIwIDEwMCAxMjBaTTEwMCA2MUMxMjIuMDkxIDYxIDE0MCA3OC45MDkxIDE0MCAxMDFDMTQwIDEyMy4wOTEgMTIyLjA5MSAxNDEgMTAwIDE0MUM3Ny45MDkxIDE0MSA2MCAxMjMuMDkxIDYwIDEwMUM2MCA3OC45MDkxIDc3LjkwOTEgNjEgMTAwIDYxWiIgZmlsbD0iIzJhOWQ4ZiIvPjxwYXRoIGQ9Ik0xMDAgNzBDMTA3LjE4IDcwIDExMyA3NS44MTk0IDExMyA4M0MxMTMgOTAuMTgwNiAxMDcuMTggOTYgMTAwIDk2QzkyLjgxOTQgOTYgODcgOTAuMTgwNiA4NyA4M0M4NyA3NS44MTk0IDkyLjgxOTQgNzAgMTAwIDcwWiIgZmlsbD0iIzJhOWQ4ZiIvPjwvc3ZnPg==';
+        e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI4MCIgZmlsbD0iI2YwZjBmMCIvPjxwYXRoIGQ9Ik0xMDAgMTIwQzExMC40ODUgMTIwIDExOSAxMTEuNDg1IDExOSAxMDFDMTE5IDkwLjUxNDYgMTEwLjQ4NSA4MiAxMDAgODJDODkuNTE0NiA4yA4MSA5MC41MTQ2IDgxIDEwMUM4MSAxMTEuNDg1IDg5LjUxNDYgMTIwIDEwMCAxMjBaTTEwMCA2MUMxMjIuMDkxIDYxIDE0MCA3OC45MDkxIDE0MCAxMDFDMTQwIDEyMy4wOTEgMTIyLjA5MSAxNDEgMTAwIDE0MUM3Ny45MDkxIDE0MSA2MCAxMjMuMDkxIDYwIDEwMUM2MCA3OC45MDkxIDc3LjkwOTEgNjEgMTAwIDYxWiIgZmlsbD0iIzJhOWQ4ZiIvPjxwYXRoIGQ9Ik0xMDAgNzBDMTA3LjE4IDcwIDExMyA3NS44MTk0IDExMyA4M0MxMTMgOTAuMTgwNiAxMDcuMTggOTYgMTAwIDk2QzkyLjgxOTQgOTYgODcgOTAuMTgwNiA4NyA4M0M4NyA3NS44MTk0IDkyLjgxOTQgNzAgMTAwIDcwWiIgZmlsbD0iIzJhOWQ4ZiIvPjwvc3ZnPg==';
         e.target.alt = 'Изображение не загружено';
         log('Ошибка загрузки изображения', e.target.src);
     }
@@ -521,10 +689,63 @@ animationStyles.textContent = `
         transform: translateY(0);
     }
     
-    .offline .service-card,
-    .offline .feature {
+    /* Стили для офлайн режима */
+    body.offline .service-card,
+    body.offline .feature {
         opacity: 0.8;
         filter: grayscale(30%);
+    }
+    
+    /* Индикатор офлайн статуса */
+    body.offline::after {
+        content: '⚫ Офлайн';
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(233, 196, 106, 0.9);
+        color: #333;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        animation: pulse 2s infinite;
+        pointer-events: none;
+    }
+    
+    body.offline.mobile-device::after {
+        content: '📶 Нет сети';
+        background: rgba(231, 111, 81, 0.9);
+        color: white;
+    }
+    
+    @keyframes pulse {
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 1; }
+    }
+    
+    /* Скрываем индикатор на мобильных при установленном PWA */
+    body.offline.mobile-device:not(.pwa-installed)::after {
+        display: block;
+    }
+    
+    /* Для мобильных устройств */
+    @media (max-width: 768px) {
+        body.offline::after {
+            bottom: 80px; /* Выше кнопки установки PWA */
+            font-size: 0.9rem;
+            padding: 10px 20px;
+        }
+        
+        body.offline.mobile-device::after {
+            animation: mobilePulse 1.5s infinite;
+        }
+        
+        @keyframes mobilePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
     }
     
     @media (prefers-reduced-motion: reduce) {
@@ -538,6 +759,10 @@ animationStyles.textContent = `
             opacity: 1;
             transform: none;
         }
+        
+        body.offline::after {
+            animation: none;
+        }
     }
 `;
 document.head.appendChild(animationStyles);
@@ -548,6 +773,7 @@ if (CONFIG.DEBUG) {
         showNotification,
         log,
         toggleBurgerAnimation,
+        isMobileDevice,
         CONFIG
     };
 }
