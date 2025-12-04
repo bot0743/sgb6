@@ -596,3 +596,75 @@ a {
 .callback-form button {
     width: 100%;
 }
+/* Индикаторы статуса сети */
+
+/* Стили для офлайн режима */
+body.offline .online-only {
+    opacity: 0.5;
+    pointer-events: none;
+    position: relative;
+}
+
+body.offline .online-only::before {
+    content: 'Требуется интернет';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    z-index: 1;
+}
+
+/* Адаптивные улучшения для уведомлений */
+@media (max-width: 768px) {
+    #notification-container {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+    
+    .notification {
+        min-width: auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    #notification-container {
+        top: 5px;
+        right: 5px;
+        left: 5px;
+    }
+    
+    .notification {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Анимация для кнопки установки PWA */
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+/* Улучшение для мобильных уведомлений */
+.mobile-device .notification {
+    font-size: 0.95rem;
+    padding: 14px 18px;
+}
+
+.mobile-device .notification-close {
+    font-size: 1.4rem;
+    margin-left: 12px;
+}
