@@ -1,1 +1,591 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты | Самарская городская больница № 6</title>
+    <meta name="description" content="Контакты руководства Самарской городской больницы №6. Телефоны, адрес, график работы, схема проезда.">
+    <meta name="keywords" content="контакты больницы Самара, телефон СГБ 6, адрес больницы №6, руководство больницы, главный врач">
+    
+    <!-- Предзагрузка шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap">
+    
+    <!-- Фавиконки -->
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Дополнительные стили для страницы контактов */
+        .contacts-section {
+            padding: 60px 0;
+        }
+        
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 50px 0;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .contact-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid var(--primary-color);
+        }
+        
+        .contact-card h3 {
+            color: var(--dark-color);
+            margin-bottom: 5px;
+            font-size: 1.3rem;
+        }
+        
+        .contact-position {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        .contact-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(42, 157, 143, 0.1);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin: 10px 0;
+            text-decoration: none;
+            color: var(--dark-color);
+        }
+        
+        .contact-phone:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .contact-phone i {
+            color: var(--primary-color);
+        }
+        
+        .contact-phone:hover i {
+            color: white;
+        }
+        
+        .contact-bio {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        .contact-bio::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .contact-bio::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        .contact-bio::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+        
+        .contact-bio ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .contact-bio li {
+            margin-bottom: 5px;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .contact-bio li::before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+        
+        .address-section {
+            background: #f9f9f9;
+            padding: 80px 0;
+        }
+        
+        .address-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .address-card {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .address-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(42, 157, 143, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .address-icon i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .address-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .map-container {
+            height: 400px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin: 40px 0;
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(42, 157, 143, 0.1) 0%, rgba(233, 196, 106, 0.1) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+        }
+        
+        .map-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .reception-hours {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .reception-hours h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .reception-hours ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .reception-hours li {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .contact-action {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-card {
+                padding: 20px;
+            }
+            
+            .contact-photo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+            
+            .contact-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-bio {
+                max-height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar" itemscope itemtype="https://schema.org/MedicalOrganization">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-heartbeat" aria-hidden="true"></i>
+                    <span>СГБ 6</span>
+                    <span class="sr-only">Самарская городская больница № 6</span>
+                </a>
+                
+                <div class="nav-links" id="navLinks" aria-label="Основная навигация">
+                    <a href="../index.html">Главная</a>
+                    <a href="services.html">Услуги</a>
+                    <a href="about.html">О нас</a>
+                    <a href="contacts.html" class="active">Контакты</a>
+                    <a href="tel:88463110939" class="phone-link">
+                        <i class="fas fa-phone" aria-hidden="true"></i> 8 (846) 311-09-39
+                    </a>
+                </div>
+                
+                <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
 
+    <main class="contacts-page">
+        <section class="page-header">
+            <div class="container">
+                <h1>Контакты и руководство</h1>
+                <p>Свяжитесь с нами удобным для вас способом</p>
+            </div>
+        </section>
+
+        <section class="address-section">
+            <div class="container">
+                <h2 class="section-title">Как нас найти</h2>
+                <p class="section-subtitle">Адрес и контактная информация</p>
+                
+                <div class="address-grid">
+                    <div class="address-card">
+                        <div class="address-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Адрес</h3>
+                        <p>443001, г. Самара<br>ул. Советской Армии, 56</p>
+                        <p style="margin-top: 15px; color: var(--text-light); font-size: 0.9rem;">
+                            <i class="fas fa-subway"></i> Ближайшая станция метро: «Советская»
+                        </p>
+                    </div>
+                    
+                    <div class="address-card">
+                        <div class="address-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Режим работы</h3>
+                        <p><strong>Платные услуги:</strong><br>Пн-Пт: 8:00-16:30</p>
+                        <p><strong>Стационар:</strong><br>Круглосуточно</p>
+                        <p><strong>Регистратура:</strong><br>Пн-Пт: 8:00-20:00<br>Сб: 9:00-14:00</p>
+                    </div>
+                    
+                    <div class="address-card">
+                        <div class="address-icon">
+                            <i class="fas fa-phone-volume"></i>
+                        </div>
+                        <h3>Телефоны</h3>
+                        <p><strong>Платные услуги:</strong><br>
+                            <a href="tel:88463110939" class="contact-phone">8 (846) 311-09-39</a>
+                        </p>
+                        <p><strong>Справочная:</strong><br>
+                            <a href="tel:88463110939" class="contact-phone">8 (846) 311-09-39</a>
+                        </p>
+                        <p><strong>Приемная:</strong><br>
+                            <a href="tel:88463110849" class="contact-phone">8 (846) 311-08-49</a>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Схема проезда</h3>
+                        <p>г. Самара, ул. Советской Армии, 56</p>
+                        <p style="margin-top: 15px; max-width: 500px;">
+                            <strong>Общественный транспорт:</strong><br>
+                            Автобусы: 1, 23, 37, 41, 47<br>
+                            Трамваи: 1, 3, 5, 16, 20<br>
+                            Маршрутки: 92, 126, 226, 232, 297
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="contact-action">
+                    <a href="tel:88463110939" class="btn-primary" style="font-size: 1.1rem; padding: 15px 35px;">
+                        <i class="fas fa-phone-alt"></i> Позвонить для записи
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="contacts-section">
+            <div class="container">
+                <h2 class="section-title">Руководство больницы</h2>
+                <p class="section-subtitle">Свяжитесь с руководством по рабочим вопросам</p>
+                
+                <div class="reception-hours">
+                    <h3>Прием граждан главным врачом</h3>
+                    <ul>
+                        <li><i class="far fa-calendar-alt"></i> Дни приема: понедельник, четверг</li>
+                        <li><i class="far fa-clock"></i> Время: с 14:00 до 16:00</li>
+                        <li><i class="fas fa-phone"></i> Запись по телефону: <strong>8 (846) 310-97-60</strong></li>
+                        <li><i class="fas fa-info-circle"></i> В том числе по личным вопросам</li>
+                    </ul>
+                </div>
+                
+                <div class="contact-info-grid">
+                    <!-- Главный врач -->
+                    <div class="contact-card">
+                        <div class="contact-photo" style="background: linear-gradient(135deg, #2a9d8f, #21867a); color: white; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <h3>Шамсудинов Расим Шамсудинович</h3>
+                        <div class="contact-position">Главный врач</div>
+                        <a href="tel:88463109760" class="contact-phone">
+                            <i class="fas fa-phone"></i> 8 (846) 310-97-60
+                        </a>
+                        <div class="contact-bio">
+                            <p><strong>Образование:</strong></p>
+                            <ul>
+                                <li>1993-1999 Дагестанская государственная медицинская академия</li>
+                                <li>1999-2000 Интернатура по хирургии г. Махачкала</li>
+                                <li>2000-2002 Ординатура по хирургии г. Самара</li>
+                            </ul>
+                            <p><strong>Опыт работы:</strong></p>
+                            <ul>
+                                <li>2002-2011 Врач сердечно-сосудистый хирург отделения сосудистой хирургии СОКБ им. В. Д. Середавина</li>
+                                <li>2011-2019 Заведующий операционным блоком СОКБ им. В. Д. Середавина</li>
+                                <li>2019-2020 Заместитель главного врача по хирургии СОКБ им. В. Д. Середавина</li>
+                                <li>С декабря 2020 - главный врач ГБУЗ СО «Самарская городская больница №6»</li>
+                            </ul>
+                            <p>Участник программ непрерывного медицинского и профессионального развития. Постоянно внедряет в лечебную практику новые технологии и современные достижения медицины. При его руководстве в больнице открыты центры: компьютерной томографии, диагностики и лечения COVID-19, амбулаторной онкологической помощи, кабинет антенатальной охраны плода, кабинет аллергологии.</p>
+                            <p>В июле, октябре-ноябре 2022 года возглавил медицинскую бригаду при оказании медицинской помощи жителям Донецкой Народной Республики в г. Снежное.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Заместители -->
+                    <div class="contact-card">
+                        <div class="contact-photo" style="background: linear-gradient(135deg, #e9c46a, #d4b152); color: #333; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                            <i class="fas fa-user-nurse"></i>
+                        </div>
+                        <h3>Лобанкова Ольга Ивановна</h3>
+                        <div class="contact-position">Заместитель главного врача по медицинской части</div>
+                        <a href="tel:88463110926" class="contact-phone">
+                            <i class="fas fa-phone"></i> 8 (846) 311-09-26
+                        </a>
+                        <div class="contact-bio">
+                            <p>Координирует лечебную работу отделений стационара и поликлиники, организацию медицинской помощи, внедрение новых медицинских технологий, контроль качества медицинской помощи.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-photo" style="background: linear-gradient(135deg, #264653, #1a323d); color: white; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                            <i class="fas fa-shield-virus"></i>
+                        </div>
+                        <h3>Морозова Екатерина Владимировна</h3>
+                        <div class="contact-position">Заместитель главного врача по медицинской профилактике</div>
+                        <a href="tel:88463110842" class="contact-phone">
+                            <i class="fas fa-phone"></i> 8 (846) 311-08-42
+                        </a>
+                        <div class="contact-bio">
+                            <p>Отвечает за организацию профилактической работы, диспансеризацию населения, вакцинопрофилактику, формирование здорового образа жизни, противоэпидемические мероприятия.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-photo" style="background: linear-gradient(135deg, #e76f51, #d65c3e); color: white; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <h3>Боков Сергей Юрьевич</h3>
+                        <div class="contact-position">Заместитель главного врача по детству</div>
+                        <a href="tel:88463110910" class="contact-phone">
+                            <i class="fas fa-phone"></i> 8 (846) 311-09-10
+                        </a>
+                        <div class="contact-bio">
+                            <p>Координирует работу педиатрической службы, детской поликлиники, организацию медицинской помощи детям, развитие детского отделения, профилактику детских заболеваний.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-photo" style="background: linear-gradient(135deg, #2a9d8f, #21867a); color: white; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <h3>Ионова Маргарита Михайловна</h3>
+                        <div class="contact-position">Заместитель главного врача по клинико-экспертной работе</div>
+                        <a href="tel:88463110888" class="contact-phone">
+                            <i class="fas fa-phone"></i> 8 (846) 311-08-88
+                        </a>
+                        <div class="contact-bio">
+                            <p>Отвечает за экспертизу временной нетрудоспособности, медико-социальную экспертизу, контроль качества медицинской документации, взаимодействие с фондами обязательного медицинского страхования.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-photo" style="background: linear-gradient(135deg, #264653, #1a323d); color: white; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                            <i class="fas fa-laptop-medical"></i>
+                        </div>
+                        <h3>Панюхина Юлия Александровна</h3>
+                        <div class="contact-position">Заместитель главного врача по материально-техническому снабжению и развитию информационных технологий</div>
+                        <a href="tel:88463110863" class="contact-phone">
+                            <i class="fas fa-phone"></i> 8 (846) 311-08-63
+                        </a>
+                        <div class="contact-bio">
+                            <p>Координирует материально-техническое обеспечение больницы, развитие IT-инфраструктуры, внедрение информационных систем, закупочную деятельность, техническое обслуживание оборудования.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-photo" style="background: linear-gradient(135deg, #e9c46a, #d4b152); color: #333; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Юльчиев Темур Юлдашевич</h3>
+                        <div class="contact-position">Заместитель главного врача по гражданской обороне и мобилизационной работе</div>
+                        <a href="tel:88463110944" class="contact-phone">
+                            <i class="fas fa-phone"></i> 8 (846) 311-09-44
+                        </a>
+                        <div class="contact-bio">
+                            <p>Отвечает за организацию гражданской обороны, мобилизационную подготовку, противопожарную безопасность, охрану труда, антитеррористическую защищенность учреждения.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-photo" style="background: linear-gradient(135deg, #e76f51, #d65c3e); color: white; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3>Бармашова Людмила Юрьевна</h3>
+                        <div class="contact-position">Главный бухгалтер</div>
+                        <a href="tel:88463110846" class="contact-phone">
+                            <i class="fas fa-phone"></i> 8 (846) 311-08-46
+                        </a>
+                        <div class="contact-bio">
+                            <p>Руководит бухгалтерской службой, отвечает за финансово-экономическую деятельность учреждения, формирование бюджетной отчетности, расчеты с контрагентами, начисление заработной платы.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-photo" style="background: linear-gradient(135deg, #2a9d8f, #21867a); color: white; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                            <i class="fas fa-user-nurse"></i>
+                        </div>
+                        <h3>Кустова Надежда Александровна</h3>
+                        <div class="contact-position">Главная медицинская сестра</div>
+                        <a href="tel:88463110850" class="contact-phone">
+                            <i class="fas fa-phone"></i> 8 (846) 311-08-50
+                        </a>
+                        <div class="contact-bio">
+                            <p>Организует работу среднего медицинского персонала, контроль за выполнением сестринских манипуляций, обеспечение отделений медикаментами и расходными материалами, повышение квалификации медсестер.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-simple">
+            <div class="container">
+                <h2>Нужна помощь в выборе специалиста?</h2>
+                <p>Наши операторы помогут вам подобрать нужного врача и записаться на прием</p>
+                <a href="tel:88463110939" class="phone-large">8 (846) 311-09-39</a>
+                <div style="margin-top: 30px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; color: var(--primary-color); margin-bottom: 10px;">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <p><strong>Пн-Пт</strong><br>8:00-16:30</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; color: var(--primary-color); margin-bottom: 10px;">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p><strong>ул. Советской Армии, 56</strong><br>г. Самара</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" itemscope itemtype="https://schema.org/MedicalOrganization">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Государственное бюджетное учреждение здравоохранения Самарской области «Самарская городская больница № 6»</h3>
+                    <p itemprop="description">Платные медицинские услуги<br>Современная диагностика и лечение</p>
+                    <p style="margin-top: 15px; color: rgba(255,255,255,0.7);">
+                        <i class="fas fa-map-marker-alt"></i> 443001, г. Самара, ул. Советской Армии, 56
+                    </p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Контактные телефоны</h3>
+                    <p><i class="fas fa-phone" aria-hidden="true"></i> <span itemprop="telephone">8 (846) 311-09-39</span> (платные услуги)</p>
+                    <p><i class="fas fa-phone" aria-hidden="true"></i> 8 (846) 311-08-49 (приемная)</p>
+                    <p><i class="fas fa-user-md" aria-hidden="true"></i> 8 (846) 310-97-60 (прием главного врача)</p>
+                    <p><i class="fas fa-clock" aria-hidden="true"></i> Пн-Пт: 8:00-16:30</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Навигация</h3>
+                    <a href="../index.html">Главная</a>
+                    <a href="services.html">Услуги</a>
+                    <a href="about.html">О нас</a>
+                    <a href="contacts.html">Контакты</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Государственное бюджетное учреждение здравоохранения Самарской области «Самарская городская больница № 6». Платные медицинские услуги.</p>
+                <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.6;">Вся информация на сайте носит справочный характер. Имеются противопоказания, необходима консультация специалиста.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
