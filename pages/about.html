@@ -1,1 +1,453 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас | Самарская городская больница № 6</title>
+    <meta name="description" content="История Самарской городской больницы №6 с 1942 года до наших дней. Современная медицинская помощь с богатыми традициями.">
+    <meta name="keywords" content="история больницы Самара, СГБ 6 история, медицинская служба Самара, больница №6 история">
+    
+    <!-- Предзагрузка шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap">
+    
+    <!-- Фавиконки -->
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Дополнительные стили для страницы "О нас" */
+        .history-section {
+            padding: 60px 0;
+        }
+        
+        .history-timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        
+        .history-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary-color);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 45%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: 60px;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 55%;
+            padding-left: 60px;
+        }
+        
+        .timeline-year {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-year {
+            float: right;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-year::after {
+            content: '';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--primary-color);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-year::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--primary-color);
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid white;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border-right: 10px solid white;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+        
+        .modern-section {
+            background: #f9f9f9;
+            padding: 80px 0;
+        }
+        
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .achievement-card {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .achievement-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(42, 157, 143, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .achievement-icon i {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        .milestone {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .milestone h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .milestone p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .history-timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 70px !important;
+                padding-right: 20px !important;
+                text-align: left !important;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-year::before,
+            .timeline-item:nth-child(odd) .timeline-year::after {
+                left: -40px;
+                right: auto;
+            }
+            
+            .timeline-content::after,
+            .timeline-content::before {
+                display: none;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-year {
+                float: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar" itemscope itemtype="https://schema.org/MedicalOrganization">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-heartbeat" aria-hidden="true"></i>
+                    <span>СГБ 6</span>
+                    <span class="sr-only">Самарская городская больница № 6</span>
+                </a>
+                
+                <div class="nav-links" id="navLinks" aria-label="Основная навигация">
+                    <a href="../index.html">Главная</a>
+                    <a href="services.html">Услуги</a>
+                    <a href="about.html" class="active">О нас</a>
+                    <a href="contacts.html">Контакты</a>
+                    <a href="tel:88463110939" class="phone-link">
+                        <i class="fas fa-phone" aria-hidden="true"></i> 8 (846) 311-09-39
+                    </a>
+                </div>
+                
+                <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
 
+    <main class="about-page">
+        <section class="page-header">
+            <div class="container">
+                <h1>О нашей больнице</h1>
+                <p>История, традиции и современные достижения</p>
+            </div>
+        </section>
+
+        <section class="milestone">
+            <div class="container">
+                <h2>Более 80 лет заботы о здоровье</h2>
+                <p>С 1942 года мы сохраняем и развиваем лучшие традиции медицины, сочетая опыт поколений с современными технологиями</p>
+            </div>
+        </section>
+
+        <section class="history-section">
+            <div class="container">
+                <h2 class="section-title">Исторический путь</h2>
+                <p class="section-subtitle">От военных лет до современного медицинского центра</p>
+                
+                <div class="history-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1942</div>
+                        <div class="timeline-content">
+                            <h3>Основание больницы</h3>
+                            <p>В приспособленном жилом доме была открыта поликлиника. В двух бараках развернут стационар на 75 коек, в числе которых было 10 родильных. Начало медицинской службы завода "Машстрой".</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">1948</div>
+                        <div class="timeline-content">
+                            <h3>Первое объединение</h3>
+                            <p>Произошло первое объединение здравпунктов, поликлиники и стационара в МСЧ завода "Машстрой" Молотовского района г. Куйбышева.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">1958</div>
+                        <div class="timeline-content">
+                            <h3>Первый корпус</h3>
+                            <p>Построен первый двухэтажный корпус больничного городка, который станет основой будущей горбольницы №6.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">1960-1970</div>
+                        <div class="timeline-content">
+                            <h3>Расширение больницы</h3>
+                            <p>Построен следующий корпус, в котором сейчас расположен стационар. МСЧ завода "Машстрой" переименована в МСЧ "Металлист".</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">1975</div>
+                        <div class="timeline-content">
+                            <h3>Медсанчасть №9</h3>
+                            <p>Медико-санитарная часть становится Медсанчастью №9 и входит в состав ТМО №14.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">1985</div>
+                        <div class="timeline-content">
+                            <h3>Новая поликлиника</h3>
+                            <p>Завершено строительство здания поликлиники завода "Металлист", выходящей фасадом на стадион "Заря".</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">1995</div>
+                        <div class="timeline-content">
+                            <h3>Реорганизация</h3>
+                            <p>ТМО №14 реорганизовано в 8 самостоятельных юридических лиц. МСЧ №9 становится Муниципальным медицинским учреждением.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2004</div>
+                        <div class="timeline-content">
+                            <h3>Создание больницы №6</h3>
+                            <p>Образована ММУ "Городская больница №6" г. Самара путем слияния ММУ ЦМСЧ №9, ММУ Городская поликлиника №18 и ММУ Противотуберкулезный диспансер №3.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="modern-section">
+            <div class="container">
+                <h2 class="section-title">Современные достижения</h2>
+                <p class="section-subtitle">Инновации и развитие в 21 веке</p>
+                
+                <div class="achievements-grid">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-shield-virus"></i>
+                        </div>
+                        <h3>Пандемия COVID-19</h3>
+                        <p>Первая в Самарской области начала принимать пациентов с подозрением на COVID-19 в марте 2020. Весь стационар был перепрофилирован в ковидный госпиталь и работал в таком режиме до июня 2023 года.</p>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-clinic-medical"></i>
+                        </div>
+                        <h3>Центр амбулаторной онкологической помощи</h3>
+                        <p>Открыт в 2021 году. Задача ЦАОПа – в одном месте оперативно провести всю уточняющую диагностику, верифицировать диагноз и при необходимости записать в областной онкоцентр.</p>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <h3>Антенатальная охрана плода</h3>
+                        <p>Открытие кабинета антенатальной охраны плода для комплексного ведения беременности и заботы о здоровье будущих мам.</p>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-allergies"></i>
+                        </div>
+                        <h3>Иммунология и аллергология</h3>
+                        <p>Открытие специализированных кабинетов иммунологии и аллергологии для помощи пациентам с иммунными нарушениями и аллергическими заболеваниями.</p>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-ambulance"></i>
+                        </div>
+                        <h3>Амбулаторно-ковидный центр</h3>
+                        <p>Открытие центра для пациентов с температурой и признаками ОРВИ, что позволило оперативно оказывать помощь в период пандемии.</p>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-hospital-user"></i>
+                        </div>
+                        <h3>Новое подразделение</h3>
+                        <p>В конце 2023 года открыта врачебная амбулатория на 300 посещений в смену, что значительно увеличило доступность медицинской помощи.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-simple">
+            <div class="container">
+                <h2>Приходите к нам за качественной медицинской помощью</h2>
+                <p>Мы сочетаем 80-летний опыт с современными технологиями диагностики и лечения</p>
+                <a href="tel:88463110939" class="phone-large">8 (846) 311-09-39</a>
+                <p style="margin-top: 20px; color: var(--text-light); font-size: 0.9rem;">
+                    <i class="fas fa-clock"></i> Пн-Пт: 8:00-16:30
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" itemscope itemtype="https://schema.org/MedicalOrganization">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Государственное бюджетное учреждение здравоохранения Самарской области «Самарская городская больница № 6»</h3>
+                    <p itemprop="description">Более 80 лет заботы о здоровье самарцев<br>Современная диагностика и лечение с сохранением традиций</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-phone" aria-hidden="true"></i> <span itemprop="telephone">8 (846) 311-09-39</span></p>
+                    <p><i class="fas fa-clock" aria-hidden="true"></i> Пн-Пт: 8:00-16:30</p>
+                    <p><i class="fas fa-history" aria-hidden="true"></i> Основана в 1942 году</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Навигация</h3>
+                    <a href="../index.html">Главная</a>
+                    <a href="services.html">Услуги</a>
+                    <a href="about.html">О нас</a>
+                    <a href="contacts.html">Контакты</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Государственное бюджетное учреждение здравоохранения Самарской области «Самарская городская больница № 6». Платные медицинские услуги.</p>
+                <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.6;">История больницы началась в 1942 году. Мы гордимся нашим прошлым и работаем для вашего будущего.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
