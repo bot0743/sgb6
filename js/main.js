@@ -160,6 +160,9 @@ function registerServiceWorker() {
                 .then(registration => {
                     log('Service Worker зарегистрирован:', registration.scope);
                     
+                    // Принудительное обновление при каждом посещении
+                    registration.update();
+                    
                     // Проверка обновлений каждые 1 час
                     setInterval(() => {
                         registration.update();
@@ -171,28 +174,21 @@ function registerServiceWorker() {
                         log('Обнаружено обновление Service Worker');
                         
                         newWorker.addEventListener('statechange', () => {
-                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                // Показываем уведомление об обновлении
-                                const notification = showNotification(CONFIG.UPDATE_MESSAGE, 'info', 10000);
-                                
-                                // Добавляем кнопку обновления
-                                const updateBtn = document.createElement('button');
-                                updateBtn.textContent = 'Обновить';
-                                updateBtn.style.cssText = `
-                                    margin-left: 10px;
-                                    padding: 5px 10px;
-                                    background: white;
-                                    color: #264653;
-                                    border: none;
-                                    border-radius: 5px;
-                                    cursor: pointer;
-                                    font-weight: bold;
-                                `;
-                                updateBtn.addEventListener('click', () => {
-                                    window.location.reload();
-                                });
-                                
-                                notification.querySelector('span').appendChild(updateBtn);
+                            if (newWorker.state === 'installed') {
+                                if (navigator.serviceWorker.controller) {
+                                    // Новая версия доступна
+                                    console.log('Новая версия Service Worker доступна');
+                                    
+                                    // Автоматическое обновление через 5 секунд
+                                    setTimeout(() => {
+                                        window.location.reload();
+                                    }, 5000);
+                                    
+                                    // Показываем уведомление об обновлении
+                                    const notification = showNotification('Доступно обновление сайта. Страница обновится через 5 секунд.', 'info', 5000);
+                                } else {
+                                    console.log('Service Worker установлен впервые');
+                                }
                             }
                         });
                     });
@@ -480,6 +476,59 @@ function monitorConnectionStatus() {
         updateOnlineStatus();
     }, 500));
 }
+
+// Функция для принудительного обновления кеша
+function addForceUpdateButton() {
+    const updateBtn = document.createElement('button');
+    updateBtn.id = 'force-update-btn';
+    updateBtn.innerHTML = '<i class="fas fa-sync-alt"></i>';
+    updateBtn.title = 'Обновить кеш сайта';
+    updateBtn.setAttribute('aria-label', 'Обновить кеш сайта');
+    updateBtn.style.cssText = `
+        position: fixed;
+        bottom: 70px;
+        right: 20px;
+        z-index: 999;
+        width: 40px;
+        height: 40px;
+        background: var(--accent-color);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(231, 111, 81, 0.3);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    `;
+    
+    updateBtn.addEventListener('click', () => {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistration().then(registration => {
+                if (registration) {
+                    registration.update().then(() => {
+                        showNotification('Кеш обновлен. Перезагрузите страницу.', 'success', 3000);
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 2000);
+                    });
+                }
+            });
+        }
+    });
+    
+    document.body.appendChild(updateBtn);
+    
+    // Показываем кнопку только на мобильных или в режиме разработки
+    if (window.innerWidth <= 768 || location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        updateBtn.style.display = 'flex';
+    }
+}
+
+// В DOMContentLoaded добавьте:
+// addForceUpdateButton();
 
 // ============================================
 // Основной функционал при загрузке DOM
