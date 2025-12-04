@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прайс-лист | Платные медицинские услуги</title>
+    <meta name="description" content="Актуальные цены на платные медицинские услуги в Самарской городской больнице №6. Диагностика, консультации, стационар.">
+    <meta name="keywords" content="цены на медицинские услуги, стоимость диагностики, прайс-лист, КТ цена, УЗИ цена">
+    
+    <!-- Предзагрузка шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap">
+    
+    <!-- Фавиконки -->
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+
+    <!-- Manifest для PWA -->
+    <link rel="manifest" href="../manifest.json">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar" itemscope itemtype="https://schema.org/MedicalOrganization">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-heartbeat" aria-hidden="true"></i>
+                    <span>СГБ 6</span>
+                    <span class="sr-only">Самарская городская больница № 6</span>
+                </a>
+                
+                <div class="nav-links" id="navLinks" aria-label="Основная навигация">
+                    <a href="../index.html">Главная</a>
+                    <a href="services.html">Услуги</a>
+                    <a href="price.html" class="active">Прайс-лист</a>
+                    <a href="about.html">О нас</a>
+                    <a href="contacts.html">Контакты</a>
+                    <a href="tel:88463110939" class="phone-link">
+                        <i class="fas fa-phone" aria-hidden="true"></i> 8 (846) 311-09-39
+                    </a>
+                </div>
+                
+                <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="price-page">
+        <section class="page-header">
+            <div class="container">
+                <h1>Прайс-лист на платные медицинские услуги</h1>
+                <p>Актуальные цены на 2025 год. Цены указаны в рублях.</p>
+            </div>
+        </section>
+
+        <section class="price-list">
+            <div class="container">
+                <!-- Функциональная диагностика -->
+                <div class="price-category">
+                    <h2><i class="fas fa-stethoscope"></i> Функциональная диагностика</h2>
+                    <div class="price-table">
+                        <div class="price-row">
+                            <div class="price-service">Рентгеноскопия</div>
+                            <div class="price-amount">от 630 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">Флюорография</div>
+                            <div class="price-amount">300 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">Электрокардиография (ЭКГ)</div>
+                            <div class="price-amount">540 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">Эхокардиография</div>
+                            <div class="price-amount">1 660 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">Маммография</div>
+                            <div class="price-amount">1 190 ₽</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Компьютерная томография -->
+                <div class="price-category">
+                    <h2><i class="fas fa-brain"></i> Компьютерная томография (КТ)</h2>
+                    <div class="price-table">
+                        <div class="price-row">
+                            <div class="price-service">КТ головного мозга</div>
+                            <div class="price-amount">от 3 500 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">КТ органов грудной клетки</div>
+                            <div class="price-amount">от 3 000 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">КТ брюшной полости и малого таза</div>
+                            <div class="price-amount">от 3 000 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">КТ опорно-двигательного аппарата</div>
+                            <div class="price-amount">от 3 000 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">КТ сосудов всего тела (ангиография)</div>
+                            <div class="price-amount">10 000 ₽</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- УЗИ -->
+                <div class="price-category">
+                    <h2><i class="fas fa-wave-square"></i> Ультразвуковые исследования</h2>
+                    <div class="price-table">
+                        <div class="price-row">
+                            <div class="price-service">УЗИ органов брюшной полости (комплексное)</div>
+                            <div class="price-amount">1 500 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">УЗИ почек, надпочечников, мочевого пузыря</div>
+                            <div class="price-amount">1 600 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">УЗИ щитовидной железы</div>
+                            <div class="price-amount">1 500 - 2 240 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">УЗИ молочных желез</div>
+                            <div class="price-amount">1 600 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">УЗИ сосудов верхних и нижних конечностей</div>
+                            <div class="price-amount">1 700 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">УЗИ сосудов шеи и головного мозга</div>
+                            <div class="price-amount">2 000 ₽</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Консультации -->
+                <div class="price-category">
+                    <h2><i class="fas fa-user-md"></i> Консультации узких специалистов</h2>
+                    <div class="price-table">
+                        <div class="price-row">
+                            <div class="price-service">Прием невролога</div>
+                            <div class="price-amount">100 - 1 400 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">Прием кардиолога</div>
+                            <div class="price-amount">1 000 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">Прием травматолога-ортопеда</div>
+                            <div class="price-amount">1 400 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">Прием хирурга</div>
+                            <div class="price-amount">1 000 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">Прием оториноларинголога (ЛОР)</div>
+                            <div class="price-amount">1 000 ₽</div>
+                        </div>
+                        <!-- Добавьте остальные консультации -->
+                    </div>
+                </div>
+
+                <!-- Эндокринология -->
+                <div class="price-category">
+                    <h2><i class="fas fa-heart"></i> Эндокринологическое отделение</h2>
+                    <div class="price-table">
+                        <div class="price-row">
+                            <div class="price-service">Консультация эндокринолога</div>
+                            <div class="price-amount">1 000 - 2 000 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">Комплексное лечение диабетической стопы</div>
+                            <div class="price-amount">от 800 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">Check-up программы</div>
+                            <div class="price-amount">от 13 500 ₽</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Женская консультация -->
+                <div class="price-category">
+                    <h2><i class="fas fa-female"></i> Женская консультация</h2>
+                    <div class="price-table">
+                        <div class="price-row">
+                            <div class="price-service">Прием гинеколога-маммолога</div>
+                            <div class="price-amount">1 600 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">Программа "Женское здоровье"</div>
+                            <div class="price-amount">6 730 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">УЗИ органов малого таза (комплексное)</div>
+                            <div class="price-amount">2 100 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">УЗИ при беременности (4D, определение пола)</div>
+                            <div class="price-amount">2 700 ₽</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Детское отделение -->
+                <div class="price-category">
+                    <h2><i class="fas fa-child"></i> Детское отделение</h2>
+                    <div class="price-table">
+                        <div class="price-row">
+                            <div class="price-service">Прием эндокринолога детского</div>
+                            <div class="price-amount">1 200 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">Прием пульмонолога детского</div>
+                            <div class="price-amount">1 000 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">Прием гинеколога детского</div>
+                            <div class="price-amount">1 200 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">УЗИ органов брюшной полости (детское)</div>
+                            <div class="price-amount">1 750 ₽</div>
+                        </div>
+                        <div class="price-row">
+                            <div class="price-service">Эластометрия печени</div>
+                            <div class="price-amount">2 900 ₽</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="price-note">
+                    <p><i class="fas fa-info-circle"></i> <strong>Примечание:</strong> Цены указаны в российских рублях. Точная стоимость услуги определяется после консультации с врачом. Некоторые услуги могут требовать дополнительных исследований.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-simple">
+            <div class="container">
+                <h2>Запись на услуги</h2>
+                <p>Для записи на любую из услуг или уточнения стоимости позвоните по телефону:</p>
+                <a href="tel:88463110939" class="phone-large">8 (846) 311-09-39</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" itemscope itemtype="https://schema.org/MedicalOrganization">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Государственное бюджетное учреждение здравоохранения Самарской области «Самарская городская больница № 6»</h3>
+                    <p itemprop="description">Платные медицинские услуги<br>Современная диагностика и лечение</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-phone" aria-hidden="true"></i> <span itemprop="telephone">8 (846) 311-09-39</span></p>
+                    <p><i class="fas fa-clock" aria-hidden="true"></i> Пн-Пт: 8:00-16:30</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Навигация</h3>
+                    <a href="../index.html">Главная</a>
+                    <a href="services.html">Услуги</a>
+                    <a href="price.html">Прайс-лист</a>
+                    <a href="about.html">О нас</a>
+                    <a href="contacts.html">Контакты</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Государственное бюджетное учреждение здравоохранения Самарской области «Самарская городская больница № 6». Платные медицинские услуги.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/sw-register.js"></script>
+</body>
+</html>
