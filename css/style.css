@@ -769,3 +769,26 @@ body.offline .online-only::before {
     font-size: 1.2rem;
     margin-top: 2px;
 }
+/* Стили для логотипа */
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo img {
+    max-height: 50px; /* Настройте под размер вашего лого */
+    width: auto;
+    transition: opacity 0.3s ease;
+}
+
+.logo img:hover {
+    opacity: 0.9;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .logo img {
+        max-height: 40px;
+    }
+}
