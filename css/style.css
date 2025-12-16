@@ -154,12 +154,17 @@ a {
     padding: 20px 0;
 }
 
+.nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .logo {
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
+    margin-right: 40px; /* Отступ от меню */
 }
 
 .logo i {
@@ -171,17 +176,23 @@ a {
     display: flex;
     align-items: center;
     gap: 30px;
+    flex-grow: 1;
 }
 
 .nav-links a {
-    font-weight: 500;
     color: var(--dark-color);
-    position: relative;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
 }
 
 .nav-links a.active::after {
@@ -194,15 +205,31 @@ a {
     background-color: var(--primary-color);
 }
 
+.nav-actions {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+}
+
 .phone-link {
-    background-color: var(--light-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-color);
+    color: white;
     padding: 8px 16px;
-    border-radius: 50px;
-    font-weight: 600;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
 }
 
 .phone-link i {
     margin-right: 5px;
+}
+
+.phone-link:hover {
+    background: var(--primary-dark);
 }
 
 .burger {
@@ -777,7 +804,7 @@ body.offline .online-only::before {
 }
 
 .logo img {
-    max-height: 50px; /* Настройте под размер вашего лого */
+    height: 40px; /* Фиксированная высота для выравнивания */
     width: auto;
     transition: opacity 0.3s ease;
 }
