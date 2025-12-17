@@ -1,3 +1,5 @@
+/* Responsive Styles for SGB-6 */
+
 /* Tablet Styles (992px and below) */
 @media (max-width: 992px) {
     .hero h1 {
@@ -10,6 +12,14 @@
     
     .nav-links {
         gap: 20px;
+    }
+    
+    .nav-actions {
+        margin-left: 20px;
+    }
+    
+    .logo {
+        margin-right: 20px;
     }
     
     .features-grid {
@@ -35,7 +45,7 @@
     
     .nav-links {
         position: fixed;
-        top: 80px;
+        top: var(--header-height);
         left: 0;
         right: 0;
         width: 100%;
@@ -50,7 +60,7 @@
         visibility: hidden;
         transition: all 0.3s ease;
         z-index: 999;
-        max-height: calc(100vh - 80px);
+        max-height: calc(100vh - var(--header-height));
         overflow-y: auto;
     }
     
@@ -71,11 +81,22 @@
         display: none;
     }
     
+    .nav-actions {
+        margin-left: auto;
+        margin-right: 15px;
+    }
+    
     .phone-link {
         background: none;
-        padding: 15px 20px;
+        padding: 8px 12px;
         color: var(--primary-color);
         font-weight: 700;
+        border-radius: 0;
+    }
+    
+    .phone-link:hover {
+        background: none;
+        transform: none;
     }
     
     .hero {
@@ -98,7 +119,7 @@
     
     .service-card,
     .feature {
-        padding: 20px;
+        padding: 25px;
     }
     
     .phone-large {
@@ -136,6 +157,36 @@
     .page-header h1 {
         font-size: 2rem;
     }
+    
+    /* Price Page Responsive */
+    .price-category {
+        padding: 20px;
+    }
+    
+    .price-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 15px;
+    }
+    
+    .price-amount {
+        text-align: left;
+        min-width: auto;
+        background-color: rgba(42, 157, 143, 0.1);
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 1rem;
+    }
+    
+    .price-note {
+        padding: 15px 20px;
+    }
+    
+    .price-note p {
+        flex-direction: column;
+        gap: 8px;
+    }
 }
 
 /* Small Mobile Styles (480px and below) */
@@ -146,10 +197,11 @@
     
     .btn-primary,
     .btn-secondary {
-        padding: 10px 20px;
+        padding: 12px 20px;
         font-size: 0.9rem;
         width: 100%;
         max-width: 280px;
+        min-width: auto;
     }
     
     .container {
@@ -190,35 +242,8 @@
     .navbar {
         padding: 15px 0;
     }
-}
-/* Price Page Responsive */
-@media (max-width: 768px) {
-    .price-category {
-        padding: 20px;
-    }
     
-    .price-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        padding: 15px;
-    }
-    
-    .price-amount {
-        text-align: left;
-        min-width: auto;
-        background-color: rgba(42, 157, 143, 0.1);
-        padding: 5px 12px;
-        border-radius: 20px;
-        font-size: 1rem;
-    }
-    
-    .price-note {
-        padding: 15px 20px;
-    }
-    
-    .price-note p {
-        flex-direction: column;
-        gap: 8px;
+    .logo img {
+        height: 35px;
     }
 }
