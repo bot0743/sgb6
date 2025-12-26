@@ -13,10 +13,6 @@ const CACHE_FILES = [
 
     // Иконки и фавиконки
     '/favicon.ico',
-    
-    // Внешние ресурсы
-    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
-    'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap'
 ];
 
 // Установка Service Worker
@@ -58,6 +54,12 @@ self.addEventListener('activate', (event) => {
   );
 });
 
+self.addEventListener('message', (event) => {
+  if (event.data === 'skipWaiting') {
+    self.skipWaiting();
+  }
+});
+
 // Перехват запросов
 self.addEventListener('fetch', (event) => {
   // Игнорируем запросы на аналитику и POST-запросы
@@ -76,7 +78,7 @@ self.addEventListener('fetch', (event) => {
         return fetch(event.request)
           .then((response) => {
             // Проверяем, валидный ли ответ
-            if (!response || response.status !== 200 || response.type !== 'basic') {
+            if (!response || response.status !== 200) {
               return response;
             }
             
