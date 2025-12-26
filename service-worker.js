@@ -70,7 +70,6 @@ self.addEventListener('fetch', (event) => {
       .then((cachedResponse) => {
         // Если есть в кеше - возвращаем из кеша
         if (cachedResponse) {
-          console.log('[Service Worker] Из кеша:', event.request.url);
           return cachedResponse;
         }
         
@@ -93,20 +92,14 @@ self.addEventListener('fetch', (event) => {
             
             return response;
           })
-          .catch((error) => {
-            console.log('[Service Worker] Ошибка загрузки:', error);
-            
-            // Для HTML-страниц показываем кастомную офлайн страницу
-            if (event.request.headers.get('accept').includes('text/html')) {
-              return caches.match('/404.html');
-            }
-            
-            return new Response('Офлайн режим. Пожалуйста, проверьте подключение к интернету.', {
-              status: 503,
-              statusText: 'Service Unavailable',
-              headers: new Headers({ 'Content-Type': 'text/plain' })
+            .catch((error) => {
+                // Для HTML страниц
+                if (event.request.destination === 'document') {
+                    return caches.match('/404.html');
+                }
+                // Для других типов
+                return caches.match('/offline.html');
             });
-          });
       })
   );
 });
