@@ -220,36 +220,18 @@
     font-size: 0.9rem;
 }
 
-/* Удалите или закомментируйте старые стили для .map-placeholder */
 .map-container {
-    position: relative;
-}
-
-/* Стили для самой карты */
-.map-container > div:first-child {
-    width: 100% !important;
-    height: 100% !important;
-}
-
-/* Стили для iframe внутри карты (если он есть) */
-.map-container iframe {
-    width: 100% !important;
-    height: 100% !important;
-    border: none;
-}
-
-/* Стили для блока с информацией о транспорте */
-.map-container .transport-info {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 15px;
+    height: 400px; /* ВАЖНО: добавить высоту */
     border-radius: var(--border-radius);
-    z-index: 1000;
-    max-width: 300px;
+    overflow: hidden;
     box-shadow: var(--shadow);
+    margin: 40px 0;
+}
+
+/* Убедитесь, что скрипт карты растягивается на весь контейнер */
+.map-container > div {
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .transport-info {
