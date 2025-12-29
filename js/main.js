@@ -333,59 +333,6 @@ function monitorConnectionStatus() {
     }, 500));
 }
 
-// Функция для принудительного обновления кеша
-function addForceUpdateButton() {
-    const updateBtn = document.createElement('button');
-    updateBtn.id = 'force-update-btn';
-    updateBtn.innerHTML = '<i class="fas fa-sync-alt"></i>';
-    updateBtn.title = 'Обновить кеш сайта';
-    updateBtn.setAttribute('aria-label', 'Обновить кеш сайта');
-    updateBtn.style.cssText = `
-        position: fixed;
-        bottom: 70px;
-        right: 20px;
-        z-index: 999;
-        width: 40px;
-        height: 40px;
-        background: var(--accent-color);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        font-size: 1.2rem;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(231, 111, 81, 0.3);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-    `;
-    
-    updateBtn.addEventListener('click', () => {
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.getRegistration().then(registration => {
-                if (registration) {
-                    registration.update().then(() => {
-                        showNotification('Кеш обновлен. Перезагрузите страницу.', 'success', 3000);
-                        setTimeout(() => {
-                            window.location.reload();
-                        }, 2000);
-                    });
-                }
-            });
-        }
-    });
-    
-    document.body.appendChild(updateBtn);
-    
-    // Показываем кнопку только на мобильных или в режиме разработки
-    if (window.innerWidth <= 768 || location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
-        updateBtn.style.display = 'flex';
-    }
-}
-
-// В DOMContentLoaded добавьте:
-// addForceUpdateButton();
-
 // ============================================
 // Основной функционал при загрузке DOM
 // ============================================
