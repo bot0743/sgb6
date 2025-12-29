@@ -71,10 +71,16 @@
     margin-bottom: 15px;
     font-size: 1.1rem;
     position: relative;
+    z-index: 1;
 }
 
+/* Для нечётных элементов (слева) */
 .timeline-item:nth-child(odd) .timeline-year {
-    float: right;
+    float: none; /* Убираем float */
+    display: inline-block;
+    margin-left: auto; /* Прижимаем к правому краю */
+    margin-right: 0;
+    position: relative;
 }
 
 .timeline-item:nth-child(odd) .timeline-year::after {
@@ -89,6 +95,13 @@
     border-radius: 50%;
     border: 4px solid white;
     box-shadow: 0 0 0 4px var(--primary-color);
+    z-index: 2;
+}
+
+/* Для чётных элементов (справа) */
+.timeline-item:nth-child(even) .timeline-year {
+    position: relative;
+    display: inline-block;
 }
 
 .timeline-item:nth-child(even) .timeline-year::before {
@@ -103,6 +116,7 @@
     border-radius: 50%;
     border: 4px solid white;
     box-shadow: 0 0 0 4px var(--primary-color);
+    z-index: 2;
 }
 
 .timeline-content {
