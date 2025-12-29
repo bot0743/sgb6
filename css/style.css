@@ -525,8 +525,18 @@ a {
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.9rem;
-    opacity: 0.7;
-    color: var(--white);
+    color: rgba(255, 255, 255, 0.9); /* Убрали opacity, задали цвет с прозрачностью */
+}
+
+.footer-bottom p {
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-bottom p:last-child {
+    margin-bottom: 0;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7); /* Для второстепенного текста немного менее яркий */
 }
 
 /* 13. СТРАНИЦА УСЛУГ */
