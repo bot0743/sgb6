@@ -177,10 +177,10 @@
     margin: 0 auto;
 }
 
-/* Добавленные стили для контактных блоков (как в contacts.html) */
+/* СТИЛИ ДЛЯ КОНТАКТНЫХ БЛОКОВ - ДЕЛАЕМ ИДЕНТИЧНО contacts.html */
 .contact-info-blocks {
     display: flex;
-    gap: 40px;
+    gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 30px;
@@ -188,18 +188,12 @@
 
 .info-block {
     text-align: center;
-    flex: 0 1 auto;
 }
 
 .info-icon {
     font-size: 2rem;
     color: var(--primary-color);
     margin-bottom: 10px;
-}
-
-.info-block p {
-    margin: 5px 0;
-    line-height: 1.4;
 }
 
 .phone-large {
@@ -209,14 +203,11 @@
     color: var(--primary-color);
     text-decoration: none;
     margin: 20px 0;
-    padding: 10px 20px;
-    border-radius: var(--border-radius);
     transition: var(--transition);
 }
 
 .phone-large:hover {
     color: var(--primary-dark);
-    background-color: rgba(42, 157, 143, 0.1);
 }
 
 .cta-simple {
@@ -236,6 +227,7 @@
     margin: 0 auto 20px;
 }
 
+/* МЕДИАЗАПРОСЫ - СОГЛАСОВАННЫЕ С contacts.html */
 @media (max-width: 768px) {
     .history-timeline::before {
         left: 30px;
@@ -263,17 +255,13 @@
     .timeline-item:nth-child(odd) .timeline-year {
         float: none;
     }
-
-    /* Медиазапросы для добавленных стилей */
+    
+    /* Медиазапросы для контактных блоков */
     .contact-info-blocks {
         gap: 20px;
     }
     
     .phone-large {
         font-size: 1.5rem;
-    }
-    
-    .info-block {
-        flex: 0 0 calc(50% - 20px);
     }
 }
