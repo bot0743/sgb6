@@ -36,7 +36,29 @@
 
 .timeline-item:nth-child(even) {
     left: 55%;
+    text-align: left; /* Добавьте это */
     padding-left: 60px;
+}
+
+.timeline-item:nth-child(odd) .timeline-year {
+    float: none; /* Уберите float */
+    position: relative;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(odd) .timeline-year::after {
+    content: '';
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 0 0 4px var(--primary-color);
+    z-index: 2;
 }
 
 .timeline-year {
