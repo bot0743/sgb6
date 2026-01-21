@@ -599,7 +599,6 @@ if (CONFIG.DEBUG) {
     window.SGB6 = {
         showNotification,
         log,
-        toggleBurgerAnimation,
         isMobileDevice,
         CONFIG
     };
