@@ -42,70 +42,92 @@
     /* Исправляем структуру навигации */
     .navbar {
         padding: 15px 0;
-        flex-wrap: nowrap; /* Запрещаем перенос */
+        flex-wrap: nowrap;
     }
     
     .nav-content {
         display: flex;
         align-items: center;
         width: 100%;
-        justify-content: space-between; /* Распределяем пространство между элементами */
-        flex-wrap: nowrap; /* Запрещаем перенос внутри контейнера */
+        justify-content: space-between;
+        flex-wrap: nowrap;
         gap: 15px;
     }
     
     /* Логотип */
     .logo {
-        order: 1; /* Логотип первым */
+        order: 1;
         margin-right: 0;
-        flex-shrink: 0; /* Запрещаем сжатие */
+        flex-shrink: 0;
     }
     
     .logo img {
-        height: 35px; /* Уменьшаем логотип для мобильных */
+        height: 35px;
     }
     
-    /* Бургер-меню */
+    /* Бургер-меню с исправленным крестиком */
     .burger {
         display: flex !important;
         flex-direction: column;
-        gap: 4px;
-        cursor: pointer;
+        justify-content: space-between;
+        width: 30px;
+        height: 24px;
         background: none;
         border: none;
-        padding: 8px;
+        padding: 0;
+        cursor: pointer;
+        position: relative;
+        order: 3;
+        flex-shrink: 0;
         z-index: 1001;
-        order: 3; /* Бургер третьим (после телефона) */
-        flex-shrink: 0; /* Запрещаем сжатие */
-        margin-left: 0; /* Убираем отступ */
     }
     
     .burger span {
-        width: 25px;
+        width: 100%;
         height: 3px;
         background-color: var(--dark-color);
-        transition: var(--transition);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         border-radius: 2px;
-        display: block;
+        position: absolute;
+        left: 0;
     }
     
+    .burger span:nth-child(1) {
+        top: 0;
+    }
+    
+    .burger span:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .burger span:nth-child(3) {
+        bottom: 0;
+    }
+    
+    /* Исправленная анимация для ровного крестика */
     .burger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
+        transform: rotate(45deg);
+        top: 50%;
+        margin-top: -1.5px;
     }
     
     .burger.active span:nth-child(2) {
         opacity: 0;
+        transform: translateX(-100%);
     }
     
     .burger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
+        transform: rotate(-45deg);
+        bottom: 50%;
+        margin-bottom: -1.5px;
     }
     
     /* Телефон */
     .nav-actions {
-        order: 2; /* Телефон вторым */
-        margin: 0; /* Убираем отступы */
-        flex-shrink: 0; /* Запрещаем сжатие */
+        order: 2;
+        margin: 0;
+        flex-shrink: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -136,7 +158,7 @@
     
     /* Навигационные ссылки */
     .nav-links {
-        order: 4; /* Меню четвертым (под всем остальным) */
+        order: 4;
         position: fixed;
         top: var(--header-height);
         left: 0;
@@ -155,7 +177,7 @@
         z-index: 999;
         max-height: calc(100vh - var(--header-height));
         overflow-y: auto;
-        display: flex !important; /* Принудительно показываем */
+        display: flex !important;
     }
     
     .nav-links.active {
@@ -298,6 +320,23 @@
         height: 30px;
     }
     
+    .burger {
+        width: 26px;
+        height: 21px;
+    }
+    
+    .burger span {
+        height: 2.5px;
+    }
+    
+    .burger.active span:nth-child(1) {
+        margin-top: -1.25px;
+    }
+    
+    .burger.active span:nth-child(3) {
+        margin-bottom: -1.25px;
+    }
+    
     .hero h1 {
         font-size: 1.8rem;
     }
@@ -354,7 +393,7 @@
 /* Extra Small Mobile Styles (360px and below) */
 @media (max-width: 360px) {
     .phone-link span {
-        display: none; /* Скрываем текст номера, оставляем только иконку */
+        display: none;
     }
     
     .phone-link {
@@ -368,5 +407,22 @@
     .phone-link i {
         margin-right: 0;
         font-size: 1rem;
+    }
+    
+    .burger {
+        width: 24px;
+        height: 20px;
+    }
+}
+
+/* Для устройств с prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .burger span,
+    .nav-links,
+    .service-card,
+    .feature,
+    .service-category {
+        transition: none !important;
+        animation: none !important;
     }
 }
