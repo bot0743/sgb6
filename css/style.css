@@ -780,3 +780,102 @@ a {
 .price-category {
     animation: fadeInUp 0.6s ease-out;
 }
+
+/* 16. ИСПРАВЛЕНИЯ ДЛЯ БУРГЕР-МЕНЮ */
+
+/* Скрываем бургер на десктопе */
+.burger {
+    display: none;
+}
+
+/* Гарантируем, что nav-links всегда виден на десктопе */
+.nav-links {
+    display: flex !important;
+}
+
+/* Анимация для открытия/закрытия меню */
+.burger span {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Фикс для навигации на мобильных */
+@media (max-width: 768px) {
+    .nav-content {
+        flex-wrap: wrap;
+    }
+    
+    .logo {
+        order: 1;
+    }
+    
+    .burger {
+        order: 2;
+    }
+    
+    .nav-actions {
+        order: 3;
+        width: 100%;
+        margin: 10px 0 0 0;
+        justify-content: center;
+    }
+    
+    .nav-links {
+        order: 4;
+        width: 100%;
+    }
+}
+
+/* 17. ПРЕДОТВРАЩЕНИЕ SCROLL ПРИ ОТКРЫТОМ МЕНЮ */
+body.menu-open {
+    overflow: hidden;
+}
+
+/* 18. ОБНОВЛЕНИЕ ДЛЯ HEADER */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.navbar {
+    position: relative;
+}
+
+/* 19. УЛУЧШЕНИЯ ДЛЯ МОБИЛЬНОЙ НАВИГАЦИИ */
+@media (max-width: 768px) {
+    .nav-links a {
+        font-size: 1.1rem;
+        padding: 18px 20px;
+        transition: background-color 0.2s ease;
+    }
+    
+    .nav-links a:hover {
+        background-color: rgba(42, 157, 143, 0.05);
+    }
+    
+    .nav-links a.active {
+        background-color: rgba(42, 157, 143, 0.1);
+        color: var(--primary-color);
+        font-weight: 600;
+    }
+}
+
+/* 20. ОБНОВЛЕНИЕ ДЛЯ ТЕЛЕФОННОЙ ССЫЛКИ НА МОБИЛЬНЫХ */
+@media (max-width: 768px) {
+    .phone-link {
+        justify-content: center;
+        padding: 12px 20px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 8px;
+        font-size: 0.95rem;
+    }
+    
+    .phone-link:hover {
+        background: var(--primary-dark);
+    }
+}
