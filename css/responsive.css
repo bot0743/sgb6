@@ -39,7 +39,33 @@
 
 /* Mobile Styles (768px and below) */
 @media (max-width: 768px) {
-    /* Бургер-меню - показываем только на мобильных */
+    /* Исправляем структуру навигации */
+    .navbar {
+        padding: 15px 0;
+        flex-wrap: nowrap; /* Запрещаем перенос */
+    }
+    
+    .nav-content {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between; /* Распределяем пространство между элементами */
+        flex-wrap: nowrap; /* Запрещаем перенос внутри контейнера */
+        gap: 15px;
+    }
+    
+    /* Логотип */
+    .logo {
+        order: 1; /* Логотип первым */
+        margin-right: 0;
+        flex-shrink: 0; /* Запрещаем сжатие */
+    }
+    
+    .logo img {
+        height: 35px; /* Уменьшаем логотип для мобильных */
+    }
+    
+    /* Бургер-меню */
     .burger {
         display: flex !important;
         flex-direction: column;
@@ -49,8 +75,9 @@
         border: none;
         padding: 8px;
         z-index: 1001;
-        order: 2; /* Порядок: лого, бургер */
-        margin-left: auto; /* Прижимаем к правому краю */
+        order: 3; /* Бургер третьим (после телефона) */
+        flex-shrink: 0; /* Запрещаем сжатие */
+        margin-left: 0; /* Убираем отступ */
     }
     
     .burger span {
@@ -74,33 +101,42 @@
         transform: rotate(-45deg) translate(7px, -6px);
     }
     
-    /* Перестраиваем структуру навигации */
-    .navbar {
-        flex-wrap: wrap; /* Разрешаем перенос */
-        padding: 15px 0;
-    }
-    
-    .nav-content {
+    /* Телефон */
+    .nav-actions {
+        order: 2; /* Телефон вторым */
+        margin: 0; /* Убираем отступы */
+        flex-shrink: 0; /* Запрещаем сжатие */
         display: flex;
         align-items: center;
-        width: 100%;
-        flex-wrap: wrap;
-    }
-    
-    .logo {
-        order: 1; /* Логотип первым */
-        margin-right: auto;
-    }
-    
-    .nav-actions {
-        order: 3; /* Телефон третьим */
-        width: 100%;
-        margin: 15px 0 0 0;
         justify-content: center;
     }
     
+    .phone-link {
+        justify-content: center;
+        padding: 8px 15px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+    }
+    
+    .phone-link i {
+        font-size: 0.9rem;
+    }
+    
+    .phone-link:hover {
+        background: var(--primary-dark);
+        transform: none;
+    }
+    
+    /* Навигационные ссылки */
     .nav-links {
-        order: 4; /* Меню четвертым */
+        order: 4; /* Меню четвертым (под всем остальным) */
         position: fixed;
         top: var(--header-height);
         left: 0;
@@ -119,6 +155,7 @@
         z-index: 999;
         max-height: calc(100vh - var(--header-height));
         overflow-y: auto;
+        display: flex !important; /* Принудительно показываем */
     }
     
     .nav-links.active {
@@ -150,22 +187,7 @@
         display: none;
     }
     
-    .phone-link {
-        justify-content: center;
-        padding: 12px 20px;
-        background: var(--primary-color);
-        color: white;
-        border-radius: 8px;
-        font-size: 0.95rem;
-        width: auto;
-        display: inline-flex;
-    }
-    
-    .phone-link:hover {
-        background: var(--primary-dark);
-        transform: none;
-    }
-    
+    /* Герой-секция */
     .hero {
         padding: 120px 0 60px;
     }
@@ -258,6 +280,24 @@
 
 /* Small Mobile Styles (480px and below) */
 @media (max-width: 480px) {
+    /* Корректируем навигацию для очень маленьких экранов */
+    .nav-content {
+        gap: 10px;
+    }
+    
+    .phone-link {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .phone-link i {
+        font-size: 0.8rem;
+    }
+    
+    .logo img {
+        height: 30px;
+    }
+    
     .hero h1 {
         font-size: 1.8rem;
     }
@@ -309,8 +349,24 @@
     .navbar {
         padding: 15px 0;
     }
+}
+
+/* Extra Small Mobile Styles (360px and below) */
+@media (max-width: 360px) {
+    .phone-link span {
+        display: none; /* Скрываем текст номера, оставляем только иконку */
+    }
     
-    .logo img {
-        height: 35px;
+    .phone-link {
+        padding: 8px;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+    }
+    
+    .phone-link i {
+        margin-right: 0;
+        font-size: 1rem;
     }
 }
