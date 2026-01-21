@@ -326,68 +326,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.add('desktop-device');
     }
     
-    // Инициализация бургер-меню
-    const burger = document.getElementById('burger');
-    const navLinks = document.getElementById('navLinks');
-    
-    if (burger && navLinks) {
-        // Устанавливаем начальные ARIA атрибуты
-        burger.setAttribute('aria-expanded', 'false');
-        burger.setAttribute('aria-label', 'Открыть меню');
-        
-        // Обработчик клика по бургеру
-        burger.addEventListener('click', function() {
-            const isActive = !navLinks.classList.contains('active');
-    
-            // Переключаем классы
-            navLinks.classList.toggle('active');
-            burger.classList.toggle('active');
-    
-            // Обновляем ARIA атрибуты
-            burger.setAttribute('aria-expanded', isActive);
-            burger.setAttribute('aria-label', isActive ? 'Закрыть меню' : 'Открыть меню');
-    
-            // Блокировка скролла
-            document.body.classList.toggle('menu-open', isActive);
-    
-            log('Меню ' + (isActive ? 'открыто' : 'закрыто'));
-        });
-        
-        // Закрытие меню при клике на ссылку
-        const links = navLinks.querySelectorAll('a');
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                burger.classList.remove('active');
-                burger.setAttribute('aria-expanded', 'false');
-                burger.setAttribute('aria-label', 'Открыть меню');
-                document.body.classList.remove('menu-open');
-            });
-        });
-        
-        // Закрытие меню при клике вне его области
-        document.addEventListener('click', function(event) {
-            if (!navLinks.contains(event.target) && !burger.contains(event.target)) {
-                navLinks.classList.remove('active');
-                burger.classList.remove('active');
-                burger.setAttribute('aria-expanded', 'false');
-                burger.setAttribute('aria-label', 'Открыть меню');
-                document.body.classList.remove('menu-open');
-            }
-        });
-        
-        // Закрытие меню по клавише Escape
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                burger.classList.remove('active');
-                burger.setAttribute('aria-expanded', 'false');
-                burger.setAttribute('aria-label', 'Открыть меню');
-                document.body.classList.remove('menu-open');
-            }
-        });
-    }
-    
     // Плавная прокрутка для якорных ссылок
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
