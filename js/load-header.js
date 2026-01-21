@@ -41,6 +41,62 @@
             }
         });
     }
+
+    function initBurgerMenu() {
+        const burger = document.getElementById('burger');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (!burger || !navLinks) {
+            console.warn('Элементы бургер-меню не найдены');
+            return;
+        }
+        
+        burger.addEventListener('click', function() {
+            // Переключаем класс для анимации бургера
+            burger.classList.toggle('active');
+            
+            // Переключаем видимость меню
+            navLinks.classList.toggle('active');
+            
+            // Обновляем aria-атрибуты для доступности
+            const isExpanded = burger.getAttribute('aria-expanded') === 'true';
+            burger.setAttribute('aria-expanded', !isExpanded);
+            
+            // Блокируем/разблокируем прокрутку страницы
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        // Закрываем меню при клике на ссылку (для мобильных)
+        const menuLinks = navLinks.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                burger.classList.remove('active');
+                navLinks.classList.remove('active');
+                burger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Закрываем меню при клике вне его
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.navbar') && navLinks.classList.contains('active')) {
+                burger.classList.remove('active');
+                navLinks.classList.remove('active');
+                burger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Закрываем меню при нажатии Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && navLinks.classList.contains('active')) {
+                burger.classList.remove('active');
+                navLinks.classList.remove('active');
+                burger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+        });
+    }
     
     // Загружаем шапку при загрузке DOM
     if (document.readyState === 'loading') {
