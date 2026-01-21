@@ -360,14 +360,17 @@ document.addEventListener('DOMContentLoaded', function() {
         burger.addEventListener('click', function() {
             const isActive = !navLinks.classList.contains('active');
             navLinks.classList.toggle('active');
-            
+    
             // Обновляем ARIA атрибуты
             burger.setAttribute('aria-expanded', isActive);
             burger.setAttribute('aria-label', isActive ? 'Закрыть меню' : 'Открыть меню');
-            
+    
             // Анимация бургера
             toggleBurgerAnimation(isActive);
-            
+    
+            // Блокировка скролла
+            document.body.classList.toggle('menu-open', isActive);
+    
             log('Меню ' + (isActive ? 'открыто' : 'закрыто'));
         });
         
@@ -379,6 +382,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 burger.setAttribute('aria-expanded', 'false');
                 burger.setAttribute('aria-label', 'Открыть меню');
                 toggleBurgerAnimation(false);
+                document.body.classList.remove('menu-open');
             });
         });
         
@@ -389,6 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 burger.setAttribute('aria-expanded', 'false');
                 burger.setAttribute('aria-label', 'Открыть меню');
                 toggleBurgerAnimation(false);
+                document.body.classList.remove('menu-open');
             }
         });
         
@@ -399,6 +404,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 burger.setAttribute('aria-expanded', 'false');
                 burger.setAttribute('aria-label', 'Открыть меню');
                 toggleBurgerAnimation(false);
+                document.body.classList.remove('menu-open');
             }
         });
     }
