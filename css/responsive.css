@@ -1,3 +1,5 @@
+/* Responsive Styles for SGB-6 */
+
 /* Tablet Styles (992px and below) */
 @media (max-width: 992px) {
     .hero h1 {
@@ -37,6 +39,7 @@
 
 /* Mobile Styles (768px and below) */
 @media (max-width: 768px) {
+    /* Бургер-меню - показываем только на мобильных */
     .burger {
         display: flex !important;
         flex-direction: column;
@@ -46,6 +49,8 @@
         border: none;
         padding: 8px;
         z-index: 1001;
+        order: 2; /* Порядок: лого, бургер */
+        margin-left: auto; /* Прижимаем к правому краю */
     }
     
     .burger span {
@@ -69,7 +74,33 @@
         transform: rotate(-45deg) translate(7px, -6px);
     }
     
+    /* Перестраиваем структуру навигации */
+    .navbar {
+        flex-wrap: wrap; /* Разрешаем перенос */
+        padding: 15px 0;
+    }
+    
+    .nav-content {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    
+    .logo {
+        order: 1; /* Логотип первым */
+        margin-right: auto;
+    }
+    
+    .nav-actions {
+        order: 3; /* Телефон третьим */
+        width: 100%;
+        margin: 15px 0 0 0;
+        justify-content: center;
+    }
+    
     .nav-links {
+        order: 4; /* Меню четвертым */
         position: fixed;
         top: var(--header-height);
         left: 0;
@@ -88,7 +119,6 @@
         z-index: 999;
         max-height: calc(100vh - var(--header-height));
         overflow-y: auto;
-        display: flex !important; /* Добавлено */
     }
     
     .nav-links.active {
@@ -98,31 +128,41 @@
     }
     
     .nav-links a {
-        padding: 15px 20px;
+        padding: 18px 20px;
         width: 100%;
         text-align: center;
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        font-size: 1.1rem;
+        transition: background-color 0.2s ease;
+    }
+    
+    .nav-links a:hover {
+        background-color: rgba(42, 157, 143, 0.05);
+    }
+    
+    .nav-links a.active {
+        background-color: rgba(42, 157, 143, 0.1);
+        color: var(--primary-color);
+        font-weight: 600;
     }
     
     .nav-links a.active::after {
         display: none;
     }
     
-    .nav-actions {
-        margin-left: auto;
-        margin-right: 15px;
-    }
-    
     .phone-link {
-        background: none;
-        padding: 8px 12px;
-        color: var(--primary-color);
-        font-weight: 700;
-        border-radius: 0;
+        justify-content: center;
+        padding: 12px 20px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        width: auto;
+        display: inline-flex;
     }
     
     .phone-link:hover {
-        background: none;
+        background: var(--primary-dark);
         transform: none;
     }
     
