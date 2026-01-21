@@ -254,38 +254,6 @@ a {
     transform: translateY(-2px);
 }
 
-/* Бургер-меню */
-.burger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    gap: 4px;
-    background: none;
-    border: none;
-    padding: 8px;
-    z-index: 1001;
-}
-
-.burger span {
-    width: 25px;
-    height: 3px;
-    background-color: var(--dark-color);
-    transition: var(--transition);
-    border-radius: 2px;
-}
-
-.burger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.burger.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.burger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -6px);
-}
-
 /* 7. ГЛАВНАЯ СЕКЦИЯ (HERO) */
 .hero {
     background: linear-gradient(135deg, rgba(42, 157, 143, 0.1) 0%, rgba(233, 196, 106, 0.1) 100%);
