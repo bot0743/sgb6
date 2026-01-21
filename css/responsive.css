@@ -1,5 +1,3 @@
-/* Responsive Styles for SGB-6 */
-
 /* Tablet Styles (992px and below) */
 @media (max-width: 992px) {
     .hero h1 {
@@ -40,7 +38,35 @@
 /* Mobile Styles (768px and below) */
 @media (max-width: 768px) {
     .burger {
-        display: flex;
+        display: flex !important;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 8px;
+        z-index: 1001;
+    }
+    
+    .burger span {
+        width: 25px;
+        height: 3px;
+        background-color: var(--dark-color);
+        transition: var(--transition);
+        border-radius: 2px;
+        display: block;
+    }
+    
+    .burger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .burger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .burger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
     }
     
     .nav-links {
@@ -62,6 +88,7 @@
         z-index: 999;
         max-height: calc(100vh - var(--header-height));
         overflow-y: auto;
+        display: flex !important; /* Добавлено */
     }
     
     .nav-links.active {
